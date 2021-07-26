@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import { CharliesChecklist } from './components/CharliesChecklist';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <CharliesChecklist />
   </React.StrictMode>,
   document.getElementById('root')
 );

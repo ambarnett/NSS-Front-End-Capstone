@@ -1,12 +1,12 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import { CharliesChecklist } from './CharliesChecklist'
+import { Home } from './Home'
 
 export const ApplicationViews = () => {
     return (
         <>
             <Route exact path="/">
-                <CharliesChecklist />
+                <Home />
             </Route>
         </>
     )

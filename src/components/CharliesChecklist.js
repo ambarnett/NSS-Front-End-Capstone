@@ -3,6 +3,8 @@ import { Route, Redirect } from 'react-router-dom'
 import { Register } from './auth/Register'
 import { Login } from './auth/Login'
 import "./CharliesChecklist.css"
+import { NavBar } from './nav/NavBar'
+import { ApplicationViews } from './ApplicationViews'
 
 export const CharliesChecklist = () => (
     <>
@@ -11,7 +13,8 @@ export const CharliesChecklist = () => (
                 if (sessionStorage.getItem("charlies_user")) {
                     return (
                         <>
-                            <h2>Charlie's Checklist</h2>
+                            <NavBar />
+                            <ApplicationViews />
                         </>
                     )
                 } else {

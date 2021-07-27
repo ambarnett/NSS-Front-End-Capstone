@@ -1,8 +1,9 @@
 import React from 'react'
-import { Route, Router } from 'react-router-dom'
+import { Route } from 'react-router-dom'
+import { Home } from './Home'
 import { DogList } from './dog/DogList'
 import { DogProvider } from './dog/DogProvider'
-import { Home } from './Home'
+import { DogForm } from './dog/DogForm'
 
 export const ApplicationViews = () => {
     return (
@@ -13,6 +14,9 @@ export const ApplicationViews = () => {
             <DogProvider>
                 <Route exact path="/dogs">
                     <DogList />
+                </Route>
+                <Route exact path="/dogs/create">
+                    <DogForm />
                 </Route>
             </DogProvider>
         </>

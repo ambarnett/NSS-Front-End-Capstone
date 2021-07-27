@@ -3,6 +3,7 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: left;
+    background-color: lightgray;
 }
 
 .navbar__item {

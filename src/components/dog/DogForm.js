@@ -2,20 +2,17 @@ import React, { useContext, useEffect, useState } from 'react'
 import { DogContext, DogProvider } from './DogProvider'
 import  "./Dog.css"
 import { useHistory } from 'react-router-dom'
-import { fireEvent } from '@testing-library/dom'
-import { LVAL_TYPES } from '@babel/types'
 
 export const DogForm = () => {
     const { addDog } = useContext(DogContext)
-    // const { commands, getCommands } = useContext(CommandsContext)
-    // const { tricks, getTricks } = useContext(TricksContext)
-    // const { habits, getHabits } = useContext(HabitsContext)
+    // const { commands, getCommands } = useContext(CommandContext)
+    // const { tricks, getTricks } = useContext(TrickContext)
+    // const { habits, getHabits } = useContext(HabitContext)
 
     const [dog, setDog] = useState({
         name: "",
         breed: "",
         age: null,
-        location: "",
         knownCommandsId: null,
         knownTricksId: null,
         knownHabitsId: null
@@ -46,7 +43,6 @@ export const DogForm = () => {
                 name: dog.name,
                 breed: dog.breed,
                 age: parseInt(dog.age),
-                location: dog.location,
                 knownCommandsId: knownCommandsId,
                 knownTricksId: knownTricksId,
                 knownHabitsId: knownHabitsId
@@ -77,12 +73,9 @@ export const DogForm = () => {
                     <input type="number" id="age" min="0" max="999" required autoFocus className="form-control" placeholder="Age" value={dog.age} onChange={handleControlledInputChange} />
                 </div>
             </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="location">Location: </label>
-                    <input type="text" id="location" required autoFocus className="form-control" placeholder="Location" value={dog.location} onChange={handleControlledInputChange} />
-                </div>
-            </fieldset>
+            <button className="btn btn-primary" onClick={handleClickSaveDog}>
+                Save Dog
+            </button>
         </form>
     )
 

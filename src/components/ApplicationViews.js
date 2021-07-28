@@ -4,16 +4,18 @@ import { Home } from './Home'
 import { DogList } from './dog/DogList'
 import { DogProvider } from './dog/DogProvider'
 import { DogForm } from './dog/DogForm'
+import { DogDetail } from './dog/DogDetail'
 
 export const ApplicationViews = () => {
     return (
         <>
-            <Route exact path="/">
-                <Home />
-            </Route>
             <DogProvider>
-                <Route exact path="/dogs">
+                <Route exact path="/">
+                    <Home />
                     <DogList />
+                </Route>
+                <Route exact path="/dogs/detail/:dogId(\d+)">
+                    <DogDetail />
                 </Route>
                 <Route exact path="/dogs/create">
                     <DogForm />

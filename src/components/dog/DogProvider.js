@@ -6,7 +6,8 @@ export const DogProvider = (props) => {
     const [dogs, setDogs] = useState([])
 
     const getDogs = () => {
-        return fetch("http://localhost:8088/dogs?_expand=knownCommands&_expand=knownTricks&_expand=knownHabits")
+        // return fetch("http://localhost:8088/dogs?_expand=knownCommands&_expand=knownTricks&_expand=knownHabits")
+        return fetch("http://localhost:8088/dogs?_embed=knownHabits")
         .then(res => res.json())
         .then(setDogs)
     }
@@ -23,7 +24,8 @@ export const DogProvider = (props) => {
     }
 
     const getDogById = (id) => {
-        return fetch(`http://localhost:8088/dogs/${id}?_expand=knownCommands&_expand=knownTricks&_expand=knownHabits`)
+        // return fetch(`http://localhost:8088/dogs/${id}?_expand=knownCommands&_expand=knownTricks&_expand=knownHabits`)
+        return fetch(`http://localhost:8088/dogs/${id}?_embed=knownHabits`)
         .then(res => res.json())
     }
 

@@ -1,8 +1,8 @@
 import React, { useState, createContext } from "react"
 
-export const knowsHabitsContext = createContext()
+export const KnownHabitsContext = createContext()
 
-export const knownHabitsProvider = (props) => {
+export const KnownHabitsProvider = (props) => {
     const [knownHabits, setKnownHabits] = useState([])
 
     const getKnownHabits = () => {
@@ -28,10 +28,10 @@ export const knownHabitsProvider = (props) => {
     }
 
     return (
-        <knowsHabitsContext.Provider value={{
+        <KnownHabitsContext.Provider value={{
             knownHabits, getKnownHabits, getKnownHabitsById, addKnownHabits
         }}>
             {props.children}
-        </knowsHabitsContext.Provider>
+        </KnownHabitsContext.Provider>
     )
 }

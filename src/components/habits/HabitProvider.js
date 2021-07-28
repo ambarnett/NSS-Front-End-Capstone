@@ -6,7 +6,7 @@ export const HabitProvider = (props) => {
     const [habits, setHabits] = useState ([])
 
     const getHabits = () => {
-        return fetch("http://localhost:8088/habits")
+        return fetch("http://localhost:8088/habits?_embed=knownHabits")
         .then(res => res.json())
         .then(setHabits)
     }
@@ -22,9 +22,14 @@ export const HabitProvider = (props) => {
         .then(getHabits)
     }
 
+    const getHabitById = (id) => {
+        return fetch(`http://localhost:8088/habits/${id}?_embed=knownHabits`)
+        .then(res => res.json())
+    }
+
     return (
         <HabitContext.Provider value={{
-            habits, getHabits, addHabit
+            habits, getHabits, addHabit, getHabitById
         }}>
             {props.children}
         </HabitContext.Provider>

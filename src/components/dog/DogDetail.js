@@ -44,16 +44,16 @@ export const DogDetail = () => {
                 history.push("/dogs")
             })
     }
-
+    console.log(dog?.id)
     return (
         <section className="dog">
             <h3 className="dog__name">{dog.name}</h3>
-            <div className="dog__breed">{dog.breed}</div>
-            <div className="dog__age">{dog.age}</div>
+            <div className="dog__breed">Breed: {dog.breed}</div>
+            <div className="dog__age">Age: {dog.age}</div>
             {/* <div className="dog__commands">{dog.knownCommands?.name}</div> */}
             {/* <div className="dog__tricks">{dog.knownTricks?.name}</div> */}
-            <div className="dog__habits">{
-                knownHabits.filter(knownHabit => knownHabit.habitId === parseInt(dogId)).map(filteredHabit => (<div>{filteredHabit.habit?.name}</div>))
+            <div className="dog__habits">Known Habits: {
+                knownHabits.filter(knownHabit => knownHabit.dogId === parseInt(dogId)).map(filteredHabit => (<div>{filteredHabit.habit?.name}</div>))
             }</div>
             <button className="delete__dog__button" onClick={handleDelete}>Remove Dog</button>
         </section>

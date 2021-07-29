@@ -7,14 +7,14 @@ import { KnownHabitsContext } from '../knownHabits/KnownHabitsProvider'
 
 export const DogDetail = () => {
     const { getDogById, deleteDog } = useContext(DogContext)
-    const { getHabits } = useContext(HabitContext)
-    const { getKnownHabits } = useContext(KnownHabitsContext)
+    const { getHabitById, habits } = useContext(HabitContext)
+    const { getKnownHabits, knownHabits } = useContext(KnownHabitsContext)
 
     const history = useHistory()
 
     const [dog, setDog] = useState({})
-    const [habits, setHabit] = useState({})
-    const [knownHabits, setKnownHabit] = useState({})
+    const [habit, setHabit] = useState({})
+    const [knownHabit, setKnownHabit] = useState({})
 
     const { dogId } = useParams()
     const { habitId } = useParams()
@@ -28,18 +28,15 @@ export const DogDetail = () => {
     }, [])
 
     useEffect(() => {
-        getHabits(habitId)
+        getKnownHabits()
+    }, [])
+
+    useEffect(() => {
+        getHabitById(dogId)
             .then((res) => {
                 setHabit(res)
             })
     }, [])
-
-    useEffect(() => {
-        getKnownHabits(knownHabitId)
-            .then((res) => {
-                setKnownHabit(res)
-            })
-    })
 
     const handleDelete = () => {
         deleteDog(dog.id)
@@ -55,9 +52,9 @@ export const DogDetail = () => {
             <div className="dog__age">{dog.age}</div>
             {/* <div className="dog__commands">{dog.knownCommands?.name}</div> */}
             {/* <div className="dog__tricks">{dog.knownTricks?.name}</div> */}
-            <div className="dog__habits">{() => {
-                if (knownHabits.dogId === dog.id) { return (habits.name) }
-            }}</div>
+            <div className="dog__habits">{
+                knownHabits.filter(knownHabit => knownHabit.habitId === parseInt(dogId)).map(filteredHabit => (<div>{filteredHabit.habit?.name}</div>))
+            }</div>
             <button className="delete__dog__button" onClick={handleDelete}>Remove Dog</button>
         </section>
     )

@@ -9,6 +9,8 @@ export const DogDetail = () => {
     const { getDogById, deleteDog } = useContext(DogContext)
     const { getHabitById, habits } = useContext(HabitContext)
     const { getKnownHabits, knownHabits } = useContext(KnownHabitsContext)
+    const { getKnownCommands, knownCommands } = useContext(KnownCommandsContext)
+    const { getKnownTricks, knownTricks } = useContext(KnownTricksContext)
 
     const history = useHistory()
 
@@ -29,6 +31,8 @@ export const DogDetail = () => {
 
     useEffect(() => {
         getKnownHabits()
+        .then(getKnownCommands)
+        .then(getKnownTricks)
     }, [])
 
     useEffect(() => {
@@ -50,7 +54,9 @@ export const DogDetail = () => {
             <h3 className="dog__name">{dog.name}</h3>
             <div className="dog__breed">Breed: {dog.breed}</div>
             <div className="dog__age">Age: {dog.age}</div>
-            {/* <div className="dog__commands">{dog.knownCommands?.name}</div> */}
+            <div className="dog__commands">Known Commands: {
+                knownCommands.filter(knownCommand => knownCommand.dogId === parseInt(dogId)).map(filteredCommand => (<div>{filteredCommand.command?.name}</div>))
+            }</div>
             {/* <div className="dog__tricks">{dog.knownTricks?.name}</div> */}
             <div className="dog__habits">Known Habits: {
                 knownHabits.filter(knownHabit => knownHabit.dogId === parseInt(dogId)).map(filteredHabit => (<div>{filteredHabit.habit?.name}</div>))

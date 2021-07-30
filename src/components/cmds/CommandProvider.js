@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react'
 
-export const CommandContext = createContext()
+export const CommandsContext = createContext()
 
 export const CommandProvider = (props) => {
     const [commands, setCommands] = useState([])
@@ -23,10 +23,10 @@ export const CommandProvider = (props) => {
     }
 
     return (
-        <CommandContext.Provider value={{
+        <CommandsContext.Provider value={{
             commands, getCommands, addCommand
         }}>
             {props.children}
-        </CommandContext.Provider>
+        </CommandsContext.Provider>
     )
 }

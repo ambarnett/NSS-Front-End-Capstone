@@ -47,10 +47,9 @@ export const DogDetail = () => {
     const handleDelete = () => {
         deleteDog(dog.id)
             .then(() => {
-                history.push("/dogs")
+                history.push("/")
             })
     }
-    console.log(dog?.id)
     return (
         <section className="dog">
             <h3 className="dog__name">{dog.name}</h3>

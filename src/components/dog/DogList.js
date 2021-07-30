@@ -7,7 +7,7 @@ import './Dog.css'
 
 export const DogList = () => {
     const { dogs, getDogs } = useContext(DogContext)
-    
+
     const history = useHistory()
 
     useEffect(() => {

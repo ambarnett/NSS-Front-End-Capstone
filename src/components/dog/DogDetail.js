@@ -47,10 +47,9 @@ export const DogDetail = () => {
     const handleDelete = () => {
         deleteDog(dog.id)
             .then(() => {
-                history.push("/dogs")
+                history.push("/")
             })
     }
-    console.log(dog?.id)
     return (
         <section className="dog">
             <h3 className="dog__name">{dog.name}</h3>
@@ -66,6 +65,7 @@ export const DogDetail = () => {
                 knownHabits.filter(knownHabit => knownHabit.dogId === parseInt(dogId)).map(filteredHabit => (<div>{filteredHabit.habit?.name}</div>))
             }</div>
             <button className="delete__dog__button" onClick={handleDelete}>Remove Dog</button>
+            <button className="edit__dog__button" onClick={() => { history.push(`/dogs/edit/${dog.id}`) }}>Edit Dog</button>
         </section>
     )
 }

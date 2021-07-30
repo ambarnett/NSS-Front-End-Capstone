@@ -30,14 +30,25 @@ export const DogProvider = (props) => {
     }
 
     const deleteDog = (dogId) => {
-        return fetch(`http:localhost:8088/dogs/${dogId}`, {
+        return fetch(`http://localhost:8088/dogs/${dogId}`, {
             method: "DELETE"
+        })
+        .then(getDogs)
+    }
+
+    const editDog = (dog) => {
+        return fetch(`http://localhost:8088/dogs/${dogs.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(dog)
         })
         .then(getDogs)
     }
     return (
         <DogContext.Provider value={{
-            dogs, getDogs, addDog, getDogById, deleteDog
+            dogs, getDogs, addDog, getDogById, deleteDog, editDog
         }}>
             {props.children}
         </DogContext.Provider>

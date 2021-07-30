@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
 import { DogContext, DogProvider } from './DogProvider'
-import  "./Dog.css"
-import { useHistory } from 'react-router-dom'
+import "./Dog.css"
 
 export const DogForm = () => {
-    const { addDog } = useContext(DogContext)
+    const { addDog, getDogById, editDog } = useContext(DogContext)
     // const { commands, getCommands } = useContext(CommandContext)
     // const { tricks, getTricks } = useContext(TrickContext)
     // const { habits, getHabits } = useContext(HabitContext)
@@ -19,42 +19,64 @@ export const DogForm = () => {
         // STRETCH GOAL = ADD PICTURE 
     })
 
+    const [isLoading, setIsLoading] = useState(true)
+
+    const { dogId } = useParams()
+
     const history = useHistory()
 
-    // useEffect(() => {
-    //     this will get the commands, tricks, and habits
-    // })
-
     const handleControlledInputChange = (evt) => {
-        const newDog = {...dog}
+        const newDog = { ...dog }
         newDog[evt.target.id] = evt.target.value
         setDog(newDog)
     }
 
     const handleClickSaveDog = (evt) => {
         evt.preventDefault()
-        const knownCommandsId = parseInt(dog.knownCommandsId)
-        const knownTricksId = parseInt(dog.knownTricksId)
-        const knownHabitsId = parseInt(dog.knownHabitsId)
-        if(dog.name === "") {
+        if (dog.name === "") {
             window.alert("FILL OUT THE FORM COMPLETELY!!! ALSO MAKE A BETTER MESSAGE")
         } else {
-            const newDog = {
-                name: dog.name,
-                breed: dog.breed,
-                age: parseInt(dog.age),
-                knownCommandsId: knownCommandsId,
-                knownTricksId: knownTricksId,
-                knownHabitsId: knownHabitsId
+            if (dogId) {
+                editDog({
+                    id: dog.id,
+                    name: dog.name,
+                    breed: dog.breed,
+                    age: dog.age,
+                    knownCommandsId: dog.knownCommandsId,
+                    knownTricksId: dog.knownTricksId,
+                    knownHabitsId: dog.knownHabitsId
+                })
+                .then(() => history.push(`/dogs/detail/${dog.id}`))
+            } else {
+                const newDog = {
+                    name: dog.name,
+                    breed: dog.breed,
+                    age: parseInt(dog.age),
+                    knownCommandsId: parseInt(dog.knownCommandsId),
+                    knownTricksId: parseInt(dog.knownTricksId),
+                    knownHabitsId: parseInt(dog.knownHabitsId)
+                }
+                addDog(newDog)
+                    .then(() => history.push("/"))
             }
-            addDog(newDog)
-            .then(() => history.push("/dogs"))
         }
     }
 
+    useEffect(() => {
+        if(dogId){
+            getDogById(dogId)
+            .then(dog => {
+                setDog(dog)
+                setIsLoading(false)
+            })
+        } else {
+            setIsLoading(false)
+        }
+    }, [])
+
     return (
         <form className="dogForm">
-            <h2 className="dogForm__title">New Dog</h2>
+            <h2 className="dogForm__title">{dogId ? <>Edit Dog</> : <>New Dog</>}</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Dog name: </label>
@@ -73,8 +95,8 @@ export const DogForm = () => {
                     <input type="number" id="age" min="0" max="999" required autoFocus className="form-control" placeholder="Age" value={dog.age} onChange={handleControlledInputChange} />
                 </div>
             </fieldset>
-            <button className="btn btn-primary" onClick={handleClickSaveDog}>
-                Save Dog
+            <button className="btn btn-primary" disabled={isLoading} onClick={handleClickSaveDog}>
+                {dogId ? <>Update Dog</> : <>Save Dog</>}
             </button>
         </form>
     )

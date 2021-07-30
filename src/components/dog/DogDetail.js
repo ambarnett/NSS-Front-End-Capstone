@@ -4,6 +4,8 @@ import { useParams, useHistory } from 'react-router-dom'
 import './Dog.css'
 import { HabitContext } from '../habits/HabitProvider'
 import { KnownHabitsContext } from '../knownHabits/KnownHabitsProvider'
+import { KnownCommandsContext } from '../knownCmds/KnownCommandsProvider'
+import { KnownTricksContext } from '../knownTricks/KnownTricksProvider'
 
 export const DogDetail = () => {
     const { getDogById, deleteDog } = useContext(DogContext)
@@ -31,8 +33,8 @@ export const DogDetail = () => {
 
     useEffect(() => {
         getKnownHabits()
-        .then(getKnownCommands)
-        .then(getKnownTricks)
+            .then(getKnownCommands)
+            .then(getKnownTricks)
     }, [])
 
     useEffect(() => {
@@ -57,7 +59,9 @@ export const DogDetail = () => {
             <div className="dog__commands">Known Commands: {
                 knownCommands.filter(knownCommand => knownCommand.dogId === parseInt(dogId)).map(filteredCommand => (<div>{filteredCommand.command?.name}</div>))
             }</div>
-            {/* <div className="dog__tricks">{dog.knownTricks?.name}</div> */}
+            <div className="dog__tricks">Known Tricks: {
+                knownTricks.filter(knownTrick => knownTrick.dogId === parseInt(dogId)).map(filteredTrick => (<div>{filteredTrick.trick?.name}</div>))
+            }</div>
             <div className="dog__habits">Known Habits: {
                 knownHabits.filter(knownHabit => knownHabit.dogId === parseInt(dogId)).map(filteredHabit => (<div>{filteredHabit.habit?.name}</div>))
             }</div>

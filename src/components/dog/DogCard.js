@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 
 export const DogCard = ({ dog }) => {
-
     const history = useHistory()
     return (
         <section className="dog">

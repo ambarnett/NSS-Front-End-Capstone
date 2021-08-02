@@ -6,7 +6,7 @@ import { HabitContext } from '../habits/HabitProvider'
 import { KnownHabitsContext } from '../knownHabits/KnownHabitsProvider'
 import { KnownCommandsContext } from '../knownCmds/KnownCommandsProvider'
 import { KnownTricksContext } from '../knownTricks/KnownTricksProvider'
-import { PopupExample } from '../habits/HabitModel'
+import { PopupExample } from '../habits/HabitModal'
 
 export const DogDetail = () => {
     const { getDogById, deleteDog } = useContext(DogContext)

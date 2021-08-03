@@ -99,9 +99,12 @@ export const DogForm = () => {
             <button className="btn btn-primary" disabled={isLoading} onClick={handleClickSaveDog}>
                 {dogId ? <>Update Dog</> : <>Save Dog</>}
             </button>
-            <Link className="navbar__link" to='/'>
+            {/* <Link className="navbar__link" to='/'>
                 Cancel
-            </Link>
+            </Link> */}
+            <button className="btn btn-primary" onClick={ () => history.push(`/dogs/detail/${dogId}`)}>
+                Cancel
+            </button>
         </form>
     )
 

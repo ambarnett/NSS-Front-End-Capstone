@@ -50,7 +50,7 @@ export const AddHabitModal = () => {
 
     return (
         <Popup
-            trigger={<button className="button"> Add Habit </button>}
+            trigger={<button className="button"> Add/Remove Habit </button>}
             modal
             nested
         >

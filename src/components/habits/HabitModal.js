@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react'
 import Popup from 'reactjs-popup'
 import './Habits.css'
 import { HabitContext } from './HabitProvider';
-// import { HabitCard } from './HabitCard';
 import { HabitModalForm } from './HabitModalForm';
 import { KnownHabitsContext } from '../knownHabits/KnownHabitsProvider';
 import { DogContext } from '../dog/DogProvider';
@@ -12,13 +11,13 @@ import { useHistory, useParams } from 'react-router-dom';
 // it will also have another button that will send the user to the add habit form
 export const PopupExample = () => {
     const { habits, getHabits, getHabitById } = useContext(HabitContext)
-    const [habit, setHabit] = useState({})
-    const [dog, setDog] = useState({})
     const { knownHabits, addKnownHabits } = useContext(KnownHabitsContext)
     const { dogs, getDogById } = useContext(DogContext)
+    const [habit, setHabit] = useState({})
+    const [dog, setDog] = useState({})
+    const [checkedHabitId, setCheckedHabitId] = useState({})
     const history = useHistory()
     const { dogId } = useParams()
-    const { habitId } = useParams()
 
     const habitInputChange = (evt) => {
         const newHabit = { ...habit }
@@ -33,19 +32,13 @@ export const PopupExample = () => {
             })
     }, [])
 
-    // useEffect(() => {
-    //     getHabitById(habitId)
-    //         .then(res => {
-    //             setHabit(res)
-    //         })
-    // }, [])
-
-
     const handleAddKnownHabit = () => {
+
         addKnownHabits({
             dogId: parseInt(dogId),
-            habitId: parseInt(habits.habitId)
+            habitId: checkedHabitId
         })
+        // .then(() => history.push(`/dogs/detail/${dogId}`))
     }
 
     useEffect(() => {
@@ -64,11 +57,11 @@ export const PopupExample = () => {
                         &times;
                     </button>
                     <div className="header"> Select habit from list or click below to create a new habit </div>
-                    <div className="content" value={habitId}>
+                    <div className="content" value={habits.id}>
                         {habits.map(habit => {
                             return <div>
-                                <input type="checkbox" name="checkbox" unchecked key={habit.id} habit={habit} value={habitId} />
-                                <label htmlFor="checkbox">{habit.name}</label>
+                                <input type="radio" name="radio" key={habit.id} habit={habit} value={habit.id} onChange={() => setCheckedHabitId(habit.id)} />
+                                <label htmlFor="radio">{habit.name}</label>
                             </div>
                         })}
                     </div>
@@ -87,7 +80,12 @@ export const PopupExample = () => {
                     </select> */}
 
                     <div className="actions">
-                        <button className="addHabit" onClick={handleAddKnownHabit}>Add Selected Habit(s)</button>
+                        <button className="addHabit" onClick={() => {
+                            handleAddKnownHabit
+                            .then(() => history.push(`/dogs/detail/${dogId}`));
+                        }}>
+                            Add Selected Habit(s)
+                        </button>
                         <Popup
                             trigger={<button className="button"> Create New Habit </button>}
                             position="top center"

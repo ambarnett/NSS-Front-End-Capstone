@@ -90,19 +90,21 @@ export const AddHabitModal = () => {
                             Add Selected Habit(s)
                         </button>
                         <Popup trigger={<button className="button">Remove Known Habit</button>} nested position="top center">
-                            {(dogId === knownHabits.dogId) ?
-                            <div></div>{knownHabits.map(kh => {
-                                return <div>
+                            {knownHabits.map(kh => {
+                                return (
+                                (parseInt(dogId) === kh.dogId) ?
+                                <div>
                                     <input type="radio" name="radio" key={kh.id} kh={kh} value={kh.id} onChange={() => setCheckedKnownHabitId(kh.id)} />
                                     <label htmlFor="radio">{kh?.habit.name}</label>
                                 </div>
-                            })}}
-                            <button className="removeHabit" onClick={() => {
-                                handleRemoveKnownHabit();
-                                refreshPage()
-                            }}>
-                                Remove Habit(s)
-                            </button>
+                                : <></>)
+                            })}
+                        <button className="removeHabit" onClick={() => {
+                            handleRemoveKnownHabit();
+                            refreshPage()
+                        }}>
+                            Remove Habit(s)
+                        </button>
                         </Popup>
                         <Popup
                             trigger={<button className="button"> Create New Habit </button>}

@@ -3,7 +3,7 @@ import { HabitContext } from './HabitProvider'
 import { useHistory, useParams } from 'react-router-dom'
 import { DogContext } from '../dog/DogProvider'
 
-export const HabitModleForm = () => {
+export const HabitModalForm = () => {
     const { addHabit, getHabitById, updateHabit } = useContext(HabitContext)
     const { dogs } = useContext(DogContext)
 

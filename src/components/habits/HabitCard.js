@@ -2,7 +2,8 @@ import React from 'react'
 import "./Habits.css"
 
 export const HabitCard = ({ habit }) => (
-    <section className="habit">
-        <div className="habit__name">{habit.name}</div>
-    </section>
+    <div className="habit">
+        <input id={habit} unchecked name="checkbox" type="checkbox"/>
+        <label htmlFor="checkbox">{habit.name}</label>
+    </div>
 )

@@ -27,9 +27,16 @@ export const KnownHabitsProvider = (props) => {
         .then(res => res.json())
     }
 
+    const removeKnownHabit = (habitId) => {
+        return fetch(`http://localhost:8088/knownHabits/${habitId}`, {
+            method: "DELETE"
+        })
+        .then(getKnownHabits)
+    }
+
     return (
         <KnownHabitsContext.Provider value={{
-            knownHabits, getKnownHabits, getKnownHabitsById, addKnownHabits
+            knownHabits, getKnownHabits, getKnownHabitsById, addKnownHabits, removeKnownHabit
         }}>
             {props.children}
         </KnownHabitsContext.Provider>

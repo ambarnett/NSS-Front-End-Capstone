@@ -6,7 +6,7 @@ import { HabitContext } from '../habits/HabitProvider'
 import { KnownHabitsContext } from '../knownHabits/KnownHabitsProvider'
 import { KnownCommandsContext } from '../knownCmds/KnownCommandsProvider'
 import { KnownTricksContext } from '../knownTricks/KnownTricksProvider'
-import { PopupExample } from '../habits/HabitModal'
+import { AddHabitModal } from '../habits/HabitModal'
 
 export const DogDetail = () => {
     const { getDogById, deleteDog } = useContext(DogContext)
@@ -67,8 +67,7 @@ export const DogDetail = () => {
             }</div>
             <button className="delete__dog__button" onClick={handleDelete}>Remove Dog</button>
             <button className="edit__dog__button" onClick={() => { history.push(`/dogs/edit/${dog.id}`) }}>Edit Dog</button>
-            <button className="add__habit__button">Add Habit</button>
-            <PopupExample />
+            <AddHabitModal />
             <button className="add__habit__button">Add Command</button>
             <button className="add__habit__button">Add Trick</button>
         </section>

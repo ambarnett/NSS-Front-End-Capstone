@@ -9,21 +9,16 @@ import { useHistory, useParams } from 'react-router-dom';
 //need to have this have access to habits 
 //the first time it will give checkboxes (or something that will allow for multiple selections at once) within the first box
 // it will also have another button that will send the user to the add habit form
-export const PopupExample = () => {
-    const { habits, getHabits, getHabitById } = useContext(HabitContext)
-    const { knownHabits, addKnownHabits } = useContext(KnownHabitsContext)
+export const AddHabitModal = () => {
+    const { habits, getHabits } = useContext(HabitContext)
+    const { knownHabits, addKnownHabits, removeKnownHabit } = useContext(KnownHabitsContext)
     const { dogs, getDogById } = useContext(DogContext)
     const [habit, setHabit] = useState({})
     const [dog, setDog] = useState({})
     const [checkedHabitId, setCheckedHabitId] = useState({})
+    const [checkedKnownHabitId, setCheckedKnownHabitId] = useState({})
     const history = useHistory()
     const { dogId } = useParams()
-
-    const habitInputChange = (evt) => {
-        const newHabit = { ...habit }
-        newHabit[evt.target.id] = evt.target.value
-        setHabit(newHabit)
-    }
 
     useEffect(() => {
         getDogById(dogId)
@@ -38,7 +33,15 @@ export const PopupExample = () => {
             dogId: parseInt(dogId),
             habitId: checkedHabitId
         })
-        // .then(() => history.push(`/dogs/detail/${dogId}`))
+        console.log(dogId)
+    }
+
+    const handleRemoveKnownHabit = () => {
+        removeKnownHabit(checkedKnownHabitId)
+    }
+
+    const refreshPage = () => {
+        window.location.reload()
     }
 
     useEffect(() => {
@@ -47,7 +50,7 @@ export const PopupExample = () => {
 
     return (
         <Popup
-            trigger={<button className="button"> Open Modal - add habit </button>}
+            trigger={<button className="button"> Add Habit </button>}
             modal
             nested
         >
@@ -81,11 +84,26 @@ export const PopupExample = () => {
 
                     <div className="actions">
                         <button className="addHabit" onClick={() => {
-                            handleAddKnownHabit
-                            .then(() => history.push(`/dogs/detail/${dogId}`));
+                            handleAddKnownHabit();
+                            refreshPage();
                         }}>
                             Add Selected Habit(s)
                         </button>
+                        <Popup trigger={<button className="button">Remove Known Habit</button>} nested position="top center">
+                            {(dogId === knownHabits.dogId) ?
+                            <div></div>{knownHabits.map(kh => {
+                                return <div>
+                                    <input type="radio" name="radio" key={kh.id} kh={kh} value={kh.id} onChange={() => setCheckedKnownHabitId(kh.id)} />
+                                    <label htmlFor="radio">{kh?.habit.name}</label>
+                                </div>
+                            })}}
+                            <button className="removeHabit" onClick={() => {
+                                handleRemoveKnownHabit();
+                                refreshPage()
+                            }}>
+                                Remove Habit(s)
+                            </button>
+                        </Popup>
                         <Popup
                             trigger={<button className="button"> Create New Habit </button>}
                             position="top center"

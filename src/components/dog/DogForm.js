@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useHistory, useParams } from 'react-router-dom'
 import { DogContext, DogProvider } from './DogProvider'
 import "./Dog.css"

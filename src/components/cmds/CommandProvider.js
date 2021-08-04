@@ -6,7 +6,7 @@ export const CommandProvider = (props) => {
     const [commands, setCommands] = useState([])
 
     const getCommands = () => {
-        return fetch("http://localhost:8088/commands")
+        return fetch("http://localhost:8088/commands?_embed=knownCommands")
         .then(res => res.json())
         .then(setCommands)
     }
@@ -22,9 +22,21 @@ export const CommandProvider = (props) => {
         .then(getCommands)
     }
 
+    const getCommandById = (id) => {
+        return fetch(`http://localhost:8088/commands/${id}`)
+        .then(res => res.json())
+    }
+
+    const removeCommand = (commandId) => {
+        return fetch(`http://localhost:8088/commands/${commandId}`, {
+            method: "DELETE"
+        })
+            .then(getCommands)
+    }
+
     return (
         <CommandsContext.Provider value={{
-            commands, getCommands, addCommand
+            commands, getCommands, addCommand, getCommandById, removeCommand
         }}>
             {props.children}
         </CommandsContext.Provider>

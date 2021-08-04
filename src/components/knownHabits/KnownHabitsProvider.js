@@ -27,8 +27,8 @@ export const KnownHabitsProvider = (props) => {
         .then(res => res.json())
     }
 
-    const removeKnownHabit = (habitId) => {
-        return fetch(`http://localhost:8088/knownHabits/${habitId}`, {
+    const removeKnownHabit = (knownHabitId) => {
+        return fetch(`http://localhost:8088/knownHabits/${knownHabitId}`, {
             method: "DELETE"
         })
         .then(getKnownHabits)

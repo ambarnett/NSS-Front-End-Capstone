@@ -27,9 +27,16 @@ export const KnownCommandsProvider = (props) => {
         .then(res => res.json())
     }
 
+    const removeKnownCommand = (knownCommandId) => {
+        return fetch(`http://localhost:8088/knownCommands/${knownCommandId}`, {
+            method: "DELETE"
+        })
+            .then(getKnownCommands)
+    }
+
     return (
         <KnownCommandsContext.Provider value={{
-            knownCommands, getKnownCommands, getKnownCommandsById, addKnownCommands
+            knownCommands, getKnownCommands, getKnownCommandsById, addKnownCommands, removeKnownCommand
         }}>
             {props.children}
         </KnownCommandsContext.Provider>

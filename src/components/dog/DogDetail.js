@@ -8,6 +8,7 @@ import { KnownCommandsContext } from '../knownCmds/KnownCommandsProvider'
 import { KnownTricksContext } from '../knownTricks/KnownTricksProvider'
 import { AddHabitModal } from '../habits/HabitModal'
 import { AddCommandModal } from '../cmds/CommandModal'
+import { AddTrickModal } from '../tricks/TrickModal'
 
 export const DogDetail = () => {
     const { getDogById, deleteDog } = useContext(DogContext)
@@ -71,6 +72,7 @@ export const DogDetail = () => {
             <AddHabitModal />
             <AddCommandModal />
             <button className="add__habit__button">Add Trick</button>
+            <AddTrickModal />
         </section>
     )
 }

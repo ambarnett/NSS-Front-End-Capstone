@@ -11,11 +11,9 @@ export const AddHabitModal = () => {
     const { habits, getHabits, removeHabit } = useContext(HabitContext)
     const { knownHabits, addKnownHabits, removeKnownHabit } = useContext(KnownHabitsContext)
     const { dogs, getDogById } = useContext(DogContext)
-    // const [habit, setHabit] = useState({})
     const [dog, setDog] = useState({})
     const [checkedHabitId, setCheckedHabitId] = useState({})
     const [checkedKnownHabitId, setCheckedKnownHabitId] = useState({})
-    // const [removeHabitId, setRemoveHabitId] = useState({})
     const history = useHistory()
     const { dogId } = useParams()
 
@@ -27,12 +25,16 @@ export const AddHabitModal = () => {
     }, [])
 
     const handleAddKnownHabit = () => {
-
-        addKnownHabits({
-            dogId: parseInt(dogId),
-            habitId: checkedHabitId
-        })
-        console.log(dogId)
+        if (Object.entries(checkedHabitId).length === 0) {
+            window.alert("please make a selection")
+        } else {
+            addKnownHabits({
+                dogId: parseInt(dogId),
+                habitId: checkedHabitId
+            })
+                .then(refreshPage)
+            console.log(dogId)
+        }
     }
 
     const handleRemoveKnownHabit = () => {
@@ -41,7 +43,6 @@ export const AddHabitModal = () => {
 
     const handleRemoveHabit = () => {
         removeHabit(checkedHabitId)
-        // removeHabit(habits.id)
     }
 
     const refreshPage = () => {
@@ -67,37 +68,20 @@ export const AddHabitModal = () => {
                     <div className="content" value={habits.id}>
                         {habits.map(habit => {
                             return <div>
-                                <input type="radio" name="radio" key={habit.id} habit={habit} value={habit.id} onChange={() => setCheckedHabitId(habit.id)} />
+                                <input type="radio" required name="radio" key={habit.id} habit={habit} value={habit.id} onChange={() => setCheckedHabitId(habit.id)} />
                                 <label htmlFor="radio">{habit.name}</label>
                                 <button className="close" onClick={() => {
-                                        removeHabit(habit.id)
-                                        .then(handleRemoveHabit)
-                                        // removeKnownHabit(knownHabits.habitId);
-                                        // handleRemoveKnownHabit();
+                                    removeHabit(habit.id)
                                 }}>
                                     &times;
                                 </button>
                             </div>
                         })}
                     </div>
-                    {/* <select
-                        name="habitId"
-                        id="habitId"
-                        className="form-control"
-                        onChange={handleAddKnownHabit}
-                    >
-                        <option value='0'>Select a Habit</option>
-                        {habits.map((h) => (
-                            <option key={h.id} value={h.id}>
-                                {h.name}
-                            </option>
-                        ))}
-                    </select> */}
-
                     <div className="actions">
                         <button className="addHabit" onClick={() => {
                             handleAddKnownHabit();
-                            refreshPage();
+                            // refreshPage();
                         }}>
                             Add Selected Habit(s)
                         </button>
@@ -106,7 +90,7 @@ export const AddHabitModal = () => {
                                 return (
                                     (parseInt(dogId) === kh.dogId) ?
                                         <div>
-                                            <input type="radio" name="radio" key={kh.id} kh={kh} value={kh.id} onChange={() => setCheckedKnownHabitId(kh.id)} />
+                                            <input type="radio" required name="radio" key={kh.id} kh={kh} value={kh.id} onChange={() => setCheckedKnownHabitId(kh.id)} />
                                             <label htmlFor="radio">{kh?.habit?.name}</label>
                                         </div>
                                         : <></>)

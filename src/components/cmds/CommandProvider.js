@@ -7,8 +7,8 @@ export const CommandProvider = (props) => {
 
     const getCommands = () => {
         return fetch("http://localhost:8088/commands?_embed=knownCommands")
-        .then(res => res.json())
-        .then(setCommands)
+            .then(res => res.json())
+            .then(setCommands)
     }
 
     const addCommand = (cmdObj) => {
@@ -19,12 +19,12 @@ export const CommandProvider = (props) => {
             },
             body: JSON.stringify(cmdObj)
         })
-        .then(getCommands)
+            .then(getCommands)
     }
 
     const getCommandById = (id) => {
         return fetch(`http://localhost:8088/commands/${id}`)
-        .then(res => res.json())
+            .then(res => res.json())
     }
 
     const removeCommand = (commandId) => {

@@ -25,12 +25,16 @@ export const AddCommandModal = () => {
     }, [])
 
     const handleAddKnownCommand = () => {
-
-        addKnownCommands({
-            dogId: parseInt(dogId),
-            commandId: checkedCommandId
-        })
-        console.log(dogId)
+        if (Object.entries(checkedCommandId).length === 0) {
+            window.alert("please make a selection")
+        } else {
+            addKnownCommands({
+                dogId: parseInt(dogId),
+                commandId: checkedCommandId
+            })
+            .then(refreshPage)
+            console.log(dogId)
+        }
     }
 
     const handleRemoveKnownCommand = () => {
@@ -78,7 +82,6 @@ export const AddCommandModal = () => {
                     <div className="actions">
                         <button className="addCommand" onClick={() => {
                             handleAddKnownCommand();
-                            refreshPage();
                         }}>
                             Add Selected Command(s)
                         </button>
@@ -94,7 +97,6 @@ export const AddCommandModal = () => {
                             })}
                             <button className="removeCommand" onClick={() => {
                                 handleRemoveKnownCommand();
-                                removeKnownCommand(knownCommands.id);
                                 refreshPage()
                             }}>
                                 Remove Command(s)

@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useHistory, useParams } from 'react-router-dom'
 import { DogContext, DogProvider } from './DogProvider'
 import "./Dog.css"
@@ -99,9 +98,9 @@ export const DogForm = () => {
             <button className="btn btn-primary" disabled={isLoading} onClick={handleClickSaveDog}>
                 {dogId ? <>Update Dog</> : <>Save Dog</>}
             </button>
-            <Link className="navbar__link" to='/'>
+            <button className="btn btn-primary" onClick={ () => history.push(`/dogs/detail/${dogId}`)}>
                 Cancel
-            </Link>
+            </button>
         </form>
     )
 

@@ -19,9 +19,9 @@ export const ApplicationViews = () => {
                 <HabitProvider>
                     <CommandProvider>
                         <TrickProvider>
-                            <KnownTricksProvider>
+                            <KnownHabitsProvider>
                                 <KnownCommandsProvider>
-                                    <KnownHabitsProvider>
+                                    <KnownTricksProvider>
                                         <Route exact path="/">
                                             <Home />
                                             <DogList />
@@ -35,9 +35,9 @@ export const ApplicationViews = () => {
                                         <Route exact path="/dogs/create">
                                             <DogForm />
                                         </Route>
-                                    </KnownHabitsProvider>
+                                    </KnownTricksProvider>
                                 </KnownCommandsProvider>
-                            </KnownTricksProvider>
+                            </KnownHabitsProvider>
                         </TrickProvider>
                     </CommandProvider>
                 </HabitProvider>

@@ -20,7 +20,7 @@ export const DogList = () => {
             <button onClick={() => { history.push("/dogs/create") }}>
                 Add Dog
             </button>
-            <div className="dogs">
+            <div className="dogs" key={dogs.id}>
                 {
                     dogs.map(dog => {
                         return <DogCard key={dog.id} dog={dog} />

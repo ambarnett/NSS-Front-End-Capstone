@@ -71,7 +71,6 @@ export const DogDetail = () => {
             <button className="edit__dog__button" onClick={() => { history.push(`/dogs/edit/${dog.id}`) }}>Edit Dog</button>
             <AddHabitModal />
             <AddCommandModal />
-            <button className="add__habit__button">Add Trick</button>
             <AddTrickModal />
         </section>
     )

@@ -10,13 +10,14 @@ import { useHistory, useParams } from 'react-router-dom';
 //the first time it will give checkboxes (or something that will allow for multiple selections at once) within the first box
 // it will also have another button that will send the user to the add habit form
 export const AddHabitModal = () => {
-    const { habits, getHabits } = useContext(HabitContext)
+    const { habits, getHabits, removeHabit } = useContext(HabitContext)
     const { knownHabits, addKnownHabits, removeKnownHabit } = useContext(KnownHabitsContext)
     const { dogs, getDogById } = useContext(DogContext)
-    const [habit, setHabit] = useState({})
+    // const [habit, setHabit] = useState({})
     const [dog, setDog] = useState({})
     const [checkedHabitId, setCheckedHabitId] = useState({})
     const [checkedKnownHabitId, setCheckedKnownHabitId] = useState({})
+    // const [removeHabitId, setRemoveHabitId] = useState({})
     const history = useHistory()
     const { dogId } = useParams()
 
@@ -39,6 +40,10 @@ export const AddHabitModal = () => {
     const handleRemoveKnownHabit = () => {
         removeKnownHabit(checkedKnownHabitId)
     }
+
+    // const handleRemoveHabit = () => {
+    //     removeHabit(removeHabitId)
+    // }
 
     const refreshPage = () => {
         window.location.reload()
@@ -65,6 +70,9 @@ export const AddHabitModal = () => {
                             return <div>
                                 <input type="radio" name="radio" key={habit.id} habit={habit} value={habit.id} onChange={() => setCheckedHabitId(habit.id)} />
                                 <label htmlFor="radio">{habit.name}</label>
+                                <button className="close" onClick={() => {removeHabit(habit.id)}}>
+                                    &times;
+                                </button>
                             </div>
                         })}
                     </div>

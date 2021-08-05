@@ -13,9 +13,6 @@ export const DogForm = () => {
         name: "",
         breed: "",
         age: null,
-        knownCommandsId: null,
-        knownTricksId: null,
-        knownHabitsId: null
         // STRETCH GOAL = ADD PICTURE 
     })
 
@@ -52,6 +49,7 @@ export const DogForm = () => {
                     name: dog.name,
                     breed: dog.breed,
                     age: parseInt(dog.age),
+                    ownerId: parseInt(sessionStorage.getItem("charlies_user")),
                     knownCommandsId: parseInt(dog.knownCommandsId),
                     knownTricksId: parseInt(dog.knownTricksId),
                     knownHabitsId: parseInt(dog.knownHabitsId)
@@ -98,7 +96,7 @@ export const DogForm = () => {
             <button className="btn btn-primary" disabled={isLoading} onClick={handleClickSaveDog}>
                 {dogId ? <>Update Dog</> : <>Save Dog</>}
             </button>
-            <button className="btn btn-primary" onClick={ () => history.push(`/dogs/detail/${dogId}`)}>
+            <button className="btn btn-primary" onClick={ () => dogId ? history.push(`/dogs/detail/${dogId}`) : history.push('/home')}>
                 Cancel
             </button>
         </form>

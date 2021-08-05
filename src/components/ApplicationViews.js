@@ -22,7 +22,7 @@ export const ApplicationViews = () => {
                             <KnownHabitsProvider>
                                 <KnownCommandsProvider>
                                     <KnownTricksProvider>
-                                        <Route exact path="/">
+                                        <Route exact path="/home">
                                             <Home />
                                             <DogList />
                                         </Route>

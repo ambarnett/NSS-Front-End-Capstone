@@ -40,12 +40,12 @@ export const DogDetail = () => {
             .then(getKnownTricks)
     }, [])
 
-    useEffect(() => {
-        getHabitById(dogId)
-            .then((res) => {
-                setHabit(res)
-            })
-    }, [])
+    // useEffect(() => {
+    //     getHabitById(habits.id)
+    //         .then((res) => {
+    //             setHabit(res)
+    //         })
+    // }, [])
 
     const handleDelete = () => {
         deleteDog(dog.id)

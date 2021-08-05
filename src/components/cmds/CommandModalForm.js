@@ -16,7 +16,7 @@ export const CommandModalForm = () => {
     }
 
     const handleClickSaveCommand = () => {
-        if (command.name === "") {
+        if (Object.entries(command).length === 0) {
             window.alert("Please give the command a name")
         } else {
             setIsLoading(true)

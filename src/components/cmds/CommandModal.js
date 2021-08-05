@@ -25,7 +25,7 @@ export const AddCommandModal = () => {
     }, [])
 
     const handleAddKnownCommand = () => {
-        if (Object.entries(checkedCommandId).length === 0) {
+            if(isNaN(checkedCommandId)) {
             window.alert("please make a selection")
         } else {
             addKnownCommands({

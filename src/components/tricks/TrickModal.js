@@ -25,7 +25,7 @@ export const AddTrickModal = () => {
     }, [])
 
     const handleAddKnownTrick = () => {
-        if (Object.entries(checkedTrickId).length === 0) {
+        if (isNaN(checkedTrickId)) {
             window.alert("please make a selection")
         } else {
             addKnownTricks({

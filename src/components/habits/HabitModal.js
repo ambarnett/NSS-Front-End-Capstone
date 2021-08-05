@@ -25,7 +25,7 @@ export const AddHabitModal = () => {
     }, [])
 
     const handleAddKnownHabit = () => {
-        if (Object.entries(checkedHabitId).length === 0) {
+        if (isNaN(checkedHabitId)) {
             window.alert("please make a selection")
         } else {
             addKnownHabits({

@@ -16,7 +16,7 @@ export const TrickModalForm = () => {
     }
 
     const handleClickSaveTrick = () => {
-        if (trick.name === "") {
+        if (Object.entries(trick).length === 0) {
             window.alert("Please give the trick a name")
         } else {
             setIsLoading(true)

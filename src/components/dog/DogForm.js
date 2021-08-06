@@ -2,12 +2,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { DogContext, DogProvider } from './DogProvider'
 import "./Dog.css"
+import axios from 'axios'
+import { DogList } from './DogList'
 
 export const DogForm = () => {
-    const { addDog, getDogById, editDog } = useContext(DogContext)
-    // const { commands, getCommands } = useContext(CommandContext)
-    // const { tricks, getTricks } = useContext(TrickContext)
-    // const { habits, getHabits } = useContext(HabitContext)
+    const { addDog, getDogById, editDog, addDogImage } = useContext(DogContext)
 
     const [dog, setDog] = useState({
         name: "",
@@ -17,9 +16,8 @@ export const DogForm = () => {
     })
 
     const [isLoading, setIsLoading] = useState(true)
-
+    const [image, setImage] = useState("")
     const { dogId } = useParams()
-
     const history = useHistory()
 
     const handleControlledInputChange = (evt) => {
@@ -43,7 +41,7 @@ export const DogForm = () => {
                     knownTricksId: dog.knownTricksId,
                     knownHabitsId: dog.knownHabitsId
                 })
-                .then(() => history.push(`/dogs/detail/${dog.id}`))
+                    .then(() => history.push(`/dogs/detail/${dog.id}`))
             } else {
                 const newDog = {
                     name: dog.name,
@@ -61,16 +59,33 @@ export const DogForm = () => {
     }
 
     useEffect(() => {
-        if(dogId){
+        if (dogId) {
             getDogById(dogId)
-            .then(dog => {
-                setDog(dog)
-                setIsLoading(false)
-            })
+                .then(dog => {
+                    setDog(dog)
+                    setIsLoading(false)
+                })
         } else {
             setIsLoading(false)
         }
     }, [])
+
+    const uploadImage = () => {
+        if (image) {
+            console.log("test for image", image)
+            const formData = new FormData()
+            formData.append("file", image)
+            formData.append("upload_preset", "charlies_checklist")
+            axios.post("https://api.cloudinary.com/v1_1/iyeycu2e/image/upload", formData)
+            .then((res) => {
+                const dogPic = {
+                    imageURL: res.data.secure_url,
+                    dogId: dog.id,
+                }
+                addDogImage()
+            })
+        }
+    }
 
     return (
         <form className="dogForm">
@@ -93,10 +108,16 @@ export const DogForm = () => {
                     <input type="number" id="age" min="0" max="999" required autoFocus className="form-control" placeholder="Age" value={dog.age} onChange={handleControlledInputChange} />
                 </div>
             </fieldset>
+            <fieldset>
+                <div className="dog-image">
+                    <input type="file" onChange={(e) => { setImage(e.target.files[0]) }} />
+                </div>
+                <button className="btn" onClick={uploadImage}>Upload Image</button>
+            </fieldset>
             <button className="btn btn-primary" disabled={isLoading} onClick={handleClickSaveDog}>
                 {dogId ? <>Update Dog</> : <>Save Dog</>}
             </button>
-            <button className="btn btn-primary" onClick={ () => dogId ? history.push(`/dogs/detail/${dogId}`) : history.push('/home')}>
+            <button className="btn btn-primary" onClick={() => dogId ? history.push(`/dogs/detail/${dogId}`) : history.push('/home')}>
                 Cancel
             </button>
         </form>

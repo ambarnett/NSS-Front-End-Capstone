@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { DogContext } from './DogProvider'
 import axios from 'axios'
+import Popup from 'reactjs-popup'
 
 export const DogPicForm = () => {
     const { getDogById, addDogImage } = useContext(DogContext)
@@ -18,6 +19,7 @@ export const DogPicForm = () => {
     })
 
     const handleAddFile = () => {
+        if(imageSelected) {
         console.log("im here", imageSelected)
         const formData = new FormData()
         formData.append("file", imageSelected)
@@ -31,12 +33,15 @@ export const DogPicForm = () => {
             addDogImage(dogImgObj)
         })
         .then(history.push(`/dogs/detail/${dogId}`))
+    } else {
+        window.alert("please select and image to upload")
     }
+}
 
     return (
         <>
             <form className="form submit_pic">
-                <h5>Choose Your Image to Upload</h5>
+                <h2>Choose Your Image to Upload</h2>
                 <input
                     type="file"
                     onChange={(event) => {

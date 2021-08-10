@@ -11,7 +11,7 @@ import { AddCommandModal } from '../cmds/CommandModal'
 import { AddTrickModal } from '../tricks/TrickModal'
 
 export const DogDetail = () => {
-    const { getDogById, deleteDog } = useContext(DogContext)
+    const { getDogById, deleteDog, dogImages, getDogImage } = useContext(DogContext)
     const { getHabitById, habits } = useContext(HabitContext)
     const { getKnownHabits, knownHabits } = useContext(KnownHabitsContext)
     const { getKnownCommands, knownCommands } = useContext(KnownCommandsContext)
@@ -22,10 +22,11 @@ export const DogDetail = () => {
     const [dog, setDog] = useState({})
     const [habit, setHabit] = useState({})
     const [knownHabit, setKnownHabit] = useState({})
+    // const [filteredImg, setFilteredImg] = useState([])
 
     const { dogId } = useParams()
-    const { habitId } = useParams()
-    const { knownHabitId } = useParams()
+    // const { habitId } = useParams()
+    // const { knownHabitId } = useParams()
 
     useEffect(() => {
         getDogById(dogId)
@@ -40,13 +41,14 @@ export const DogDetail = () => {
             .then(getKnownTricks)
     }, [])
 
-    // useEffect(() => {
-    //     getHabitById(habits.id)
-    //         .then((res) => {
-    //             setHabit(res)
-    //         })
-    // }, [])
+    useEffect(() => {
+        getDogImage()
+    }, [])
 
+    // useEffect(() => {
+    //     const filteredImg = dogImages.filter((img) => img.dogId === parseInt(dogId))
+    //     setFilteredImg(filteredImg)
+    // })
     const handleDelete = () => {
         deleteDog(dog.id)
             .then(() => {
@@ -55,7 +57,11 @@ export const DogDetail = () => {
     }
     return (
         <section className="dog">
+
             <h3 className="dog__name">{dog.name}</h3>
+            <div className="dog__image">Dog Image Goes Here {
+                dogImages.filter(dogImage => dogImage.dogId === parseInt(dogId)).map(filteredImage => (<img src={filteredImage.imgURL}/>))
+            }</div>
             <div className="dog__breed">Breed: {dog.breed}</div>
             <div className="dog__age">Age: {dog.age}</div>
             <div className="dog__commands">Known Commands: {

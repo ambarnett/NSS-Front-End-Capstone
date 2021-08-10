@@ -4,7 +4,7 @@ export const DogContext = createContext()
 
 export const DogProvider = (props) => {
     const [dogs, setDogs] = useState([])
-    const [dogImages, setDogImages]
+    const [dogImages, setDogImages] = useState([])
 
     const getDogs = () => {
         return fetch("http://localhost:8088/dogs?_embed=knownHabits_embed=knownCommands_embed=knownTricks")
@@ -52,19 +52,19 @@ export const DogProvider = (props) => {
         .then(setDogImages)
     }
 
-    const addDogImage = (pic) => {
+    const addDogImage = (dogImgObj) => {
         return fetch("http://localhost:8088/dogImages", {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json"
             },
-            body: JSON.stringify(pic)
+            body: JSON.stringify(dogImgObj)
         })
         .then(getDogImage)
     }
     return (
         <DogContext.Provider value={{
-            dogs, getDogs, addDog, getDogById, deleteDog, editDog, getDogImage, addDogImage
+            dogs, getDogs, addDog, getDogById, deleteDog, editDog, getDogImage, addDogImage, dogImages
         }}>
             {props.children}
         </DogContext.Provider>

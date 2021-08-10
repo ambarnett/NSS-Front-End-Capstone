@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
-import { DogContext, DogProvider } from './DogProvider'
+import { DogContext} from './DogProvider'
 import "./Dog.css"
 import axios from 'axios'
 import { DogList } from './DogList'
@@ -16,7 +16,6 @@ export const DogForm = () => {
     })
 
     const [isLoading, setIsLoading] = useState(true)
-    const [image, setImage] = useState("")
     const { dogId } = useParams()
     const history = useHistory()
 
@@ -37,9 +36,6 @@ export const DogForm = () => {
                     name: dog.name,
                     breed: dog.breed,
                     age: dog.age,
-                    knownCommandsId: dog.knownCommandsId,
-                    knownTricksId: dog.knownTricksId,
-                    knownHabitsId: dog.knownHabitsId
                 })
                     .then(() => history.push(`/dogs/detail/${dog.id}`))
             } else {
@@ -48,12 +44,9 @@ export const DogForm = () => {
                     breed: dog.breed,
                     age: parseInt(dog.age),
                     ownerId: parseInt(sessionStorage.getItem("charlies_user")),
-                    knownCommandsId: parseInt(dog.knownCommandsId),
-                    knownTricksId: parseInt(dog.knownTricksId),
-                    knownHabitsId: parseInt(dog.knownHabitsId)
                 }
                 addDog(newDog)
-                    .then(() => history.push("/"))
+                    // .then(() => history.push("/home"))
             }
         }
     }
@@ -69,23 +62,6 @@ export const DogForm = () => {
             setIsLoading(false)
         }
     }, [])
-
-    const uploadImage = () => {
-        if (image) {
-            console.log("test for image", image)
-            const formData = new FormData()
-            formData.append("file", image)
-            formData.append("upload_preset", "charlies_checklist")
-            axios.post("https://api.cloudinary.com/v1_1/iyeycu2e/image/upload", formData)
-            .then((res) => {
-                const dogPic = {
-                    imageURL: res.data.secure_url,
-                    dogId: dog.id,
-                }
-                addDogImage()
-            })
-        }
-    }
 
     return (
         <form className="dogForm">
@@ -107,12 +83,6 @@ export const DogForm = () => {
                     <label htmlFor="age">Dog age: </label>
                     <input type="number" id="age" min="0" max="999" required autoFocus className="form-control" placeholder="Age" value={dog.age} onChange={handleControlledInputChange} />
                 </div>
-            </fieldset>
-            <fieldset>
-                <div className="dog-image">
-                    <input type="file" onChange={(e) => { setImage(e.target.files[0]) }} />
-                </div>
-                <button className="btn" onClick={uploadImage}>Upload Image</button>
             </fieldset>
             <button className="btn btn-primary" disabled={isLoading} onClick={handleClickSaveDog}>
                 {dogId ? <>Update Dog</> : <>Save Dog</>}

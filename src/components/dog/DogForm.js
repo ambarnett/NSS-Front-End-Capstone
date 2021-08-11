@@ -46,7 +46,7 @@ export const DogForm = () => {
                     ownerId: parseInt(sessionStorage.getItem("charlies_user")),
                 }
                 addDog(newDog)
-                    // .then(() => history.push("/home"))
+                    .then(() => history.push("/home"))
             }
         }
     }

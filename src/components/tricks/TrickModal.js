@@ -9,7 +9,7 @@ import { useHistory, useParams } from 'react-router-dom';
 
 export const AddTrickModal = () => {
     const { tricks, getTricks, removeTrick } = useContext(TrickContext)
-    const { knownTricks, addKnownTricks, removeKnownTrick } = useContext(KnownTricksContext)
+    const { knownTricks, addKnownTricks, removeKnownTrick, getKnownTricks } = useContext(KnownTricksContext)
     const { dogs, getDogById } = useContext(DogContext)
     const [dog, setDog] = useState({})
     const [checkedTrickId, setCheckedTrickId] = useState({})
@@ -32,22 +32,25 @@ export const AddTrickModal = () => {
                 dogId: parseInt(dogId),
                 trickId: checkedTrickId
             })
-                .then(refreshPage)
+                // .then(refreshPage)
+                .then(getKnownTricks)
             console.log(dogId)
         }
     }
 
     const handleRemoveKnownTrick = () => {
         removeKnownTrick(checkedKnownTrickId)
+        .then(getKnownTricks)
     }
 
     const handleRemoveTrick = () => {
         removeTrick(checkedTrickId)
+        .then(getTricks)
     }
 
-    const refreshPage = () => {
-        window.location.reload()
-    }
+    // const refreshPage = () => {
+    //     window.location.reload()
+    // }
 
     useEffect(() => {
         getTricks()
@@ -70,10 +73,9 @@ export const AddTrickModal = () => {
                             return <div>
                                 <input type="radio" name="radio" key={trick.id} trick={trick} value={trick.id} onChange={() => setCheckedTrickId(trick.id)} />
                                 <label htmlFor="radio">{trick.name}</label>
-                                <button className="close" onClick={() => {
-                                    removeTrick(trick.id);
-                                    refreshPage()
-                                }}>
+                                <button className="close" onClick={
+                                    handleRemoveTrick
+                                }>
                                     &times;
                                 </button>
                             </div>
@@ -97,8 +99,6 @@ export const AddTrickModal = () => {
                             })}
                             <button className="removeTrick" onClick={() => {
                                 handleRemoveKnownTrick();
-                                removeKnownTrick(knownTricks.id);
-                                refreshPage()
                             }}>
                                 Remove Trick(s)
                             </button>

@@ -20,13 +20,8 @@ export const DogDetail = () => {
     const history = useHistory()
 
     const [dog, setDog] = useState({})
-    const [habit, setHabit] = useState({})
-    const [knownHabit, setKnownHabit] = useState({})
-    // const [filteredImg, setFilteredImg] = useState([])
 
     const { dogId } = useParams()
-    // const { habitId } = useParams()
-    // const { knownHabitId } = useParams()
 
     useEffect(() => {
         getDogById(dogId)
@@ -45,14 +40,10 @@ export const DogDetail = () => {
         getDogImage()
     }, [])
 
-    // useEffect(() => {
-    //     const filteredImg = dogImages.filter((img) => img.dogId === parseInt(dogId))
-    //     setFilteredImg(filteredImg)
-    // })
     const handleDelete = () => {
         deleteDog(dog.id)
             .then(() => {
-                history.push("/")
+                history.push("/home")
             })
     }
     return (

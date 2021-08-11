@@ -9,9 +9,10 @@ import { KnownTricksContext } from '../knownTricks/KnownTricksProvider'
 import { AddHabitModal } from '../habits/HabitModal'
 import { AddCommandModal } from '../cmds/CommandModal'
 import { AddTrickModal } from '../tricks/TrickModal'
+import { DogNotes } from './DogNotes'
 
 export const DogDetail = () => {
-    const { getDogById, deleteDog, dogImages, getDogImage } = useContext(DogContext)
+    const { getDogById, deleteDog, dogImages, getDogImage, dogNotes, getDogNotes } = useContext(DogContext)
     const { getHabitById, habits } = useContext(HabitContext)
     const { getKnownHabits, knownHabits } = useContext(KnownHabitsContext)
     const { getKnownCommands, knownCommands } = useContext(KnownCommandsContext)
@@ -38,6 +39,10 @@ export const DogDetail = () => {
 
     useEffect(() => {
         getDogImage()
+    }, [])
+
+    useEffect(() => {
+        getDogNotes()
     }, [])
 
     const handleDelete = () => {
@@ -69,6 +74,10 @@ export const DogDetail = () => {
             <AddHabitModal />
             <AddCommandModal />
             <AddTrickModal />
+            <DogNotes />
+            <div className="dog__notes">Notes: {
+                dogNotes.filter(dogNote => dogNote.dogId === parseInt(dogId)).map(filteredNote => (<div>{filteredNote.content}</div>))
+            }</div>
         </section>
     )
 }

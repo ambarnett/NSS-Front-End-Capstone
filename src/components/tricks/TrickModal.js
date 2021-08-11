@@ -32,7 +32,6 @@ export const AddTrickModal = () => {
                 dogId: parseInt(dogId),
                 trickId: checkedTrickId
             })
-                // .then(refreshPage)
                 .then(getKnownTricks)
             console.log(dogId)
         }
@@ -47,10 +46,6 @@ export const AddTrickModal = () => {
         removeTrick(checkedTrickId)
         .then(getTricks)
     }
-
-    // const refreshPage = () => {
-    //     window.location.reload()
-    // }
 
     useEffect(() => {
         getTricks()

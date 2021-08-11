@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { DogContext} from './DogProvider'
 import "./Dog.css"
-import axios from 'axios'
-import { DogList } from './DogList'
 
 export const DogForm = () => {
     const { addDog, getDogById, editDog, addDogImage } = useContext(DogContext)
@@ -12,7 +10,6 @@ export const DogForm = () => {
         name: "",
         breed: "",
         age: null,
-        // STRETCH GOAL = ADD PICTURE 
     })
 
     const [isLoading, setIsLoading] = useState(true)
@@ -43,7 +40,7 @@ export const DogForm = () => {
                     name: dog.name,
                     breed: dog.breed,
                     age: parseInt(dog.age),
-                    ownerId: parseInt(sessionStorage.getItem("charlies_user")),
+                    ownerId: parseInt(sessionStorage.getItem("charlies_user"))
                 }
                 addDog(newDog)
                     .then(() => history.push("/home"))

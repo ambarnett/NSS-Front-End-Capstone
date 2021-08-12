@@ -69,6 +69,7 @@ export const DogDetail = () => {
             <div className="dog__habits">Known Habits: {
                 knownHabits.filter(knownHabit => knownHabit.dogId === parseInt(dogId)).map(filteredHabit => (<div>{filteredHabit.habit?.name}</div>))
             }</div>
+            <button className="bt" onClick={() => { history.push(`/dogs/image/${dog.id}`) }}>Add picture</button>
             <button className="delete__dog__button" onClick={handleDelete}>Remove Dog</button>
             <button className="edit__dog__button" onClick={() => { history.push(`/dogs/edit/${dog.id}`) }}>Edit Dog</button>
             <AddHabitModal />

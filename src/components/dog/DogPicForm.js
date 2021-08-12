@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { DogContext } from './DogProvider'
 import axios from 'axios'
-import Popup from 'reactjs-popup'
+import './Dog.css'
 
 export const DogPicForm = () => {
     const { getDogById, addDogImage } = useContext(DogContext)
@@ -51,6 +51,8 @@ export const DogPicForm = () => {
 
                 <button className="btn" onClick={handleAddFile}>
                     Upload Image
+                </button>
+                <button className="btn" onClick={() => {history.push(`/dogs/detail/${dogId}`)}}>Cancel
                 </button>
             </form>
         </>

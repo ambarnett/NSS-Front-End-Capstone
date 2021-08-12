@@ -5,25 +5,23 @@ import "./NavBar.css"
 export const NavBar = () => {
     return (
         <nav className="navbar">
-            <ul className="navbar">
-                <li className="navbar__item">
-                    <Link className="navbar__link" to='/home'>
-                        Home
-                    </Link>
-                </li>
-                {/* <li className="navbar__item">
-                    <Link className="navbar__link" to="/dogs">
-                        Dogs
-                    </Link>
-                </li> */}
-            </ul>
-            <ul className="navbar">
-                <li className="navbar__item">
-                    <Link className="navbar__link" to="/login" onClick={() => sessionStorage.removeItem('charlies_user')}>
-                        Logout
-                    </Link>
-                </li>
-            </ul>
+            <h2>Charlie's Checklist</h2>
+            <div className="navbar">
+                <ul className="nav">
+                    <li className="nav-item">
+                        <Link className="nav-link" to='/home'>
+                            Home
+                        </Link>
+                    </li>
+                </ul>
+                <ul className="nav">
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/login" onClick={() => sessionStorage.removeItem('charlies_user')}>
+                            Logout
+                        </Link>
+                    </li>
+                </ul>
+            </div>
         </nav>
     )
 }

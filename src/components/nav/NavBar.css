@@ -1,12 +1,35 @@
 .navbar {
-    text-decoration: underline;
     display: flex;
     flex-wrap: nowrap;
     justify-content: left;
-    background-color: lightgray;
+    background-color: #121619;
+    color: white;
+    position: relative;
+    /* flex-wrap: wrap; */
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    margin: -1em;
 }
 
-.navbar__item {
+.nav {
+    text-decoration: underline;
     flex-basis: 20%;
     list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.nav-item {
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 1rem;
+}
+.nav-link {
+    display: block;
+    padding: .5rem 1rem;
+    color: inherit;
 }

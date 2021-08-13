@@ -89,9 +89,12 @@ export const DogDetail = () => {
                 <div className="dog__notes__form__and__button">
                     <DogNotes />
                 </div>
-                <div className="dog__detail__notes__display">Notes: {
-                    dogNotes.filter(dogNote => dogNote.dogId === parseInt(dogId)).map(filteredNote => (<div>{filteredNote.content}</div>))
-                }</div>
+                <div className="dog__detail__notes__display">
+                    <div className="lines"></div>
+                    <ul className="dog__detail__notes__notepad">{
+                        dogNotes.filter(dogNote => dogNote.dogId === parseInt(dogId)).map(filteredNote => (<li>{filteredNote.content}</li>))
+                    }</ul>
+                </div>
             </div>
             <button className="delete__dog__button" onClick={handleDelete}>Remove Dog</button>
         </section>

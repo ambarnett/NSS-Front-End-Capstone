@@ -40,10 +40,9 @@ export const DogNotes = () => {
     return (
         <>
             <form className="dog_notes">
-                <label htmlFor="note">Notes: </label>
                 <input type="textarea" id="content" className="note-area" placeholder="Enter notes here..." value={note.content} onChange={handleInputChange} />
             </form>
-            <button className="btn btn-primary" onClick={handleClickAddNote}>Add Note</button>
+            <button className="note__btn" onClick={handleClickAddNote}>Add Note</button>
         </>
     )
 }

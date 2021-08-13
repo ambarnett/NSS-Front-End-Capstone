@@ -52,33 +52,48 @@ export const DogDetail = () => {
             })
     }
     return (
-        <section className="dog">
-
-            <h3 className="dog__name">{dog.name}</h3>
-            <div className="dog__image">Dog Image Goes Here {
-                dogImages.filter(dogImage => dogImage.dogId === parseInt(dogId)).map(filteredImage => (<img src={filteredImage.imgURL}/>))
-            }</div>
-            <div className="dog__breed">Breed: {dog.breed}</div>
-            <div className="dog__age">Age: {dog.age}</div>
-            <div className="dog__commands">Known Commands: {
-                knownCommands.filter(knownCommand => knownCommand.dogId === parseInt(dogId)).map(filteredCommand => (<div>{filteredCommand.command?.name}</div>))
-            }</div>
-            <div className="dog__tricks">Known Tricks: {
-                knownTricks.filter(knownTrick => knownTrick.dogId === parseInt(dogId)).map(filteredTrick => (<div>{filteredTrick.trick?.name}</div>))
-            }</div>
-            <div className="dog__habits">Known Habits: {
-                knownHabits.filter(knownHabit => knownHabit.dogId === parseInt(dogId)).map(filteredHabit => (<div>{filteredHabit.habit?.name}</div>))
-            }</div>
-            <button className="bt" onClick={() => { history.push(`/dogs/image/${dog.id}`) }}>Add picture</button>
+        <section className="dog__detail">
+            <div className="dog__detail__main__card">
+                <image className="dog__detail__image">{
+                    dogImages.filter(dogImage => dogImage.dogId === parseInt(dogId)).map(filteredImage => (<img src={filteredImage.imgURL} />))
+                }
+                    <div className="main__buttons">
+                        <button className="add__pic__btn" onClick={() => { history.push(`/dogs/image/${dog.id}`) }}>Add picture</button>
+                        <button className="edit__dog__button" onClick={() => { history.push(`/dogs/edit/${dog.id}`) }}>Edit Dog</button>
+                    </div>
+                </image>
+                <div className="dog__detail__info">
+                    <h3 className="dog__detail__name">{dog.name}</h3>
+                    <div className="dog__detail__breed">Breed: {dog.breed}</div>
+                    <div className="dog__detail__age">Age: {dog.age}</div>
+                </div>
+            </div>
+            <div className="dog__detail__second__cards">
+                <div className="dog__detail__commands">Known Commands: {
+                    knownCommands.filter(knownCommand => knownCommand.dogId === parseInt(dogId)).map(filteredCommand => (<div>{filteredCommand.command?.name}</div>))
+                }
+                    <AddCommandModal />
+                </div>
+                <div className="dog__detail__tricks">Known Tricks: {
+                    knownTricks.filter(knownTrick => knownTrick.dogId === parseInt(dogId)).map(filteredTrick => (<div>{filteredTrick.trick?.name}</div>))
+                }
+                    <AddTrickModal />
+                </div>
+                <div className="dog__detail__habits">Known Habits: {
+                    knownHabits.filter(knownHabit => knownHabit.dogId === parseInt(dogId)).map(filteredHabit => (<div>{filteredHabit.habit?.name}</div>))
+                }
+                    <AddHabitModal />
+                </div>
+            </div>
+            <div className="dog__detail__third__card">
+                <div className="dog__notes__form__and__button">
+                    <DogNotes />
+                </div>
+                <div className="dog__detail__notes__display">Notes: {
+                    dogNotes.filter(dogNote => dogNote.dogId === parseInt(dogId)).map(filteredNote => (<div>{filteredNote.content}</div>))
+                }</div>
+            </div>
             <button className="delete__dog__button" onClick={handleDelete}>Remove Dog</button>
-            <button className="edit__dog__button" onClick={() => { history.push(`/dogs/edit/${dog.id}`) }}>Edit Dog</button>
-            <AddHabitModal />
-            <AddCommandModal />
-            <AddTrickModal />
-            <DogNotes />
-            <div className="dog__notes">Notes: {
-                dogNotes.filter(dogNote => dogNote.dogId === parseInt(dogId)).map(filteredNote => (<div>{filteredNote.content}</div>))
-            }</div>
         </section>
     )
 }

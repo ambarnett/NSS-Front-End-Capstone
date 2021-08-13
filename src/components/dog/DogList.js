@@ -17,16 +17,19 @@ export const DogList = () => {
 
     return (
         <>
-            <h2>Dogs</h2>
-            <button onClick={() => { history.push("/dogs/create") }}>
-                Add Dog
-            </button>
+            <div className="title_text">
+                <h2>Dogs</h2>
+                <button onClick={() => { history.push("/dogs/create") }}>
+                    Add Dog
+                </button>
+            </div>
             <div className="dogs" key={dogs.id}>
                 {
                     dogs.map(dog => {
-                        if(currentUserId === dog.ownerId) {
-                        return <DogCard key={dog.id} dog={dog} />
-                    }})
+                        if (currentUserId === dog.ownerId) {
+                            return <DogCard key={dog.id} dog={dog} />
+                        }
+                    })
                 }
             </div>
         </>

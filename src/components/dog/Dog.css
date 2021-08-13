@@ -3,7 +3,6 @@
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: space-between;
-  /* background-color: #e5c687; */
 }
 
 .dog {
@@ -15,7 +14,7 @@
   margin-right: 5rem;
 }
 
-.dog__name{
+.dog__name {
   text-decoration: none;
   color: inherit;
   text-transform: uppercase;
@@ -53,6 +52,7 @@
   padding: 22px 45px;
   font-size: 1rem;
   text-transform: uppercase;
+  font-style: inherit;
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.294);
 }
@@ -68,11 +68,180 @@
   justify-content: center;
   font-weight: 400;
   display: flex;
-  border-radius: 5px;
+  border-radius: 15px;
   margin: 20px;
   margin-left: -10em;
   grid-column-start: 2;
   grid-column-end: 3;
   background-color: #e5c687;
   box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356);
+}
+.dog__detail {
+  margin: 25px;
+}
+.dog__detail__main__card {
+  padding: 40px 40px;
+  justify-content: space-between;
+  font-weight: 400;
+  display: flex;
+  border-radius: 15px;
+  margin: 20px;
+  margin-top: 50px;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  background-color: #e5c687;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356);
+}
+.dog__detail__name {
+}
+.dog__detail img {
+  width: 300px;
+  border-radius: 15px;
+}
+.dog__detail__info {
+  margin: auto;
+}
+.dog__detail__breed {
+}
+.dog__detail__age {
+}
+.dog__detail__second__cards {
+  display: flex;
+  justify-content: space-around;
+  margin: 185px;
+}
+.dog__detail__commands {
+  padding: 40px 40px;
+  justify-content: space-between;
+  font-weight: 400;
+  display: flex;
+  border-radius: 15px;
+  margin: 20px;
+  flex-direction: column;
+  background-color: #e5c687;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356);
+}
+.dog__detail__tricks {
+  padding: 40px 40px;
+  justify-content: space-between;
+  font-weight: 400;
+  display: flex;
+  border-radius: 15px;
+  margin: 20px;
+  flex-direction: column;
+  background-color: #e5c687;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356);
+}
+.dog__detail__habits {
+  padding: 40px 40px;
+  justify-content: space-between;
+  font-weight: 400;
+  display: flex;
+  border-radius: 15px;
+  margin: 20px;
+  flex-direction: column;
+  background-color: #e5c687;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356);
+}
+.add__pic__btn {
+  border-radius: 5px;
+  bottom: -20px;
+  right: -20px;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  background-color: #09814a;
+  padding: 10px 15px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-style: inherit;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.294);
+}
+.add__pic__btn:hover{
+  background-color: #2d4739;
+  box-shadow: none;
+}
+.delete__dog__button {
+  border-radius: 5px;
+  bottom: -20px;
+  right: -20px;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  background-color: red;
+  padding: 5px 10px;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-style: inherit;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.294);
+}
+.edit__dog__button {
+  border-radius: 5px;
+  bottom: -20px;
+  right: -20px;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  background-color: #09814a;
+  padding: 10px 15px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-style: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.294);
+}
+.edit__dog__button:hover{
+  background-color: #2d4739;
+  box-shadow: none;
+}
+.dog__detail__third__card  {
+  padding: 40px 40px;
+  justify-content: space-between;
+  font-weight: 400;
+  display: flex;
+  border-radius: 15px;
+  margin: 20px;
+  flex-direction: row;
+  background-color: #e5c687;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356);
+}
+.dog__detail__notes__display {
+  border: solid black;
+}
+.main__buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.note-area{
+  outline: none;
+  width: 350px;
+  height: 175px;
+  border-radius: 5px;
+  border: none;
+}
+.note__btn{
+  border-radius: 5px;
+  bottom: -20px;
+  right: -20px;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  background-color: #09814a;
+  padding: 10px 15px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-style: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.294);
 }

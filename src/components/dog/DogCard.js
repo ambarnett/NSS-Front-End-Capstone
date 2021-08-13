@@ -14,7 +14,6 @@ export const DogCard = ({ dog }) => {
                     {dog.name}
                 </Link>
                 <button className="btn-dog" onClick={() => { history.push(`/dogs/edit/${dog.id}`) }}>Edit Dog</button>
-                {/* <button className="bt" onClick={() => { history.push(`/dogs/image/${dog.id}`)}}>Add picture</button> */}
             </h3>
         </section>
     )

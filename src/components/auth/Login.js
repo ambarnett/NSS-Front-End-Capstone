@@ -29,7 +29,7 @@ export const Login = () => {
             .then(exists => {
                 if (exists) {
                     sessionStorage.setItem("charlies_user", exists.id)
-                    history.push("/")
+                    history.push("/home")
                 } else {
                     setExistDialog(true)
                 }

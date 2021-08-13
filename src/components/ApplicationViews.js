@@ -5,6 +5,7 @@ import { DogList } from './dog/DogList'
 import { DogProvider } from './dog/DogProvider'
 import { DogForm } from './dog/DogForm'
 import { DogDetail } from './dog/DogDetail'
+import { DogPicForm } from './dog/DogPicForm'
 import { HabitProvider } from './habits/HabitProvider'
 import { KnownHabitsProvider } from './knownHabits/KnownHabitsProvider'
 import { CommandProvider } from './cmds/CommandProvider'
@@ -25,6 +26,9 @@ export const ApplicationViews = () => {
                                         <Route exact path="/home">
                                             <Home />
                                             <DogList />
+                                        </Route>
+                                        <Route exact path="/dogs/image/:dogId(\d+)">
+                                            <DogPicForm />
                                         </Route>
                                         <Route exact path="/dogs/detail/:dogId(\d+)">
                                             <DogDetail />

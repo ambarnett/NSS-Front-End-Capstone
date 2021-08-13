@@ -9,7 +9,7 @@ import { useHistory, useParams } from 'react-router-dom';
 
 export const AddHabitModal = () => {
     const { habits, getHabits, removeHabit } = useContext(HabitContext)
-    const { knownHabits, addKnownHabits, removeKnownHabit } = useContext(KnownHabitsContext)
+    const { knownHabits, addKnownHabits, removeKnownHabit, getKnownHabits } = useContext(KnownHabitsContext)
     const { dogs, getDogById } = useContext(DogContext)
     const [dog, setDog] = useState({})
     const [checkedHabitId, setCheckedHabitId] = useState({})
@@ -32,22 +32,25 @@ export const AddHabitModal = () => {
                 dogId: parseInt(dogId),
                 habitId: checkedHabitId
             })
-                .then(refreshPage)
+                // .then(refreshPage)
+                .then(getKnownHabits)
             console.log(dogId)
         }
     }
 
     const handleRemoveKnownHabit = () => {
         removeKnownHabit(checkedKnownHabitId)
+        .then(getKnownHabits)
     }
 
     const handleRemoveHabit = () => {
         removeHabit(checkedHabitId)
+        .then(getHabits)
     }
 
-    const refreshPage = () => {
-        window.location.reload()
-    }
+    // const refreshPage = () => {
+    //     window.location.reload()
+    // }
 
     useEffect(() => {
         getHabits()
@@ -70,9 +73,9 @@ export const AddHabitModal = () => {
                             return <div>
                                 <input type="radio" required name="radio" key={habit.id} habit={habit} value={habit.id} onChange={() => setCheckedHabitId(habit.id)} />
                                 <label htmlFor="radio">{habit.name}</label>
-                                <button className="close" onClick={() => {
-                                    removeHabit(habit.id)
-                                }}>
+                                <button className="close" onClick={
+                                    handleRemoveHabit
+                                }>
                                     &times;
                                 </button>
                             </div>
@@ -81,7 +84,6 @@ export const AddHabitModal = () => {
                     <div className="actions">
                         <button className="addHabit" onClick={() => {
                             handleAddKnownHabit();
-                            // refreshPage();
                         }}>
                             Add Selected Habit(s)
                         </button>
@@ -97,7 +99,7 @@ export const AddHabitModal = () => {
                             })}
                             <button className="removeHabit" onClick={() => {
                                 handleRemoveKnownHabit();
-                                refreshPage()
+                                // refreshPage()
                             }}>
                                 Remove Habit(s)
                             </button>

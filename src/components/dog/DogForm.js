@@ -1,25 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
-import { DogContext, DogProvider } from './DogProvider'
+import { DogContext} from './DogProvider'
 import "./Dog.css"
 
 export const DogForm = () => {
-    const { addDog, getDogById, editDog } = useContext(DogContext)
-    // const { commands, getCommands } = useContext(CommandContext)
-    // const { tricks, getTricks } = useContext(TrickContext)
-    // const { habits, getHabits } = useContext(HabitContext)
+    const { addDog, getDogById, editDog, addDogImage } = useContext(DogContext)
 
     const [dog, setDog] = useState({
         name: "",
         breed: "",
         age: null,
-        // STRETCH GOAL = ADD PICTURE 
     })
 
     const [isLoading, setIsLoading] = useState(true)
-
     const { dogId } = useParams()
-
     const history = useHistory()
 
     const handleControlledInputChange = (evt) => {
@@ -39,34 +33,28 @@ export const DogForm = () => {
                     name: dog.name,
                     breed: dog.breed,
                     age: dog.age,
-                    knownCommandsId: dog.knownCommandsId,
-                    knownTricksId: dog.knownTricksId,
-                    knownHabitsId: dog.knownHabitsId
                 })
-                .then(() => history.push(`/dogs/detail/${dog.id}`))
+                    .then(() => history.push(`/dogs/detail/${dog.id}`))
             } else {
                 const newDog = {
                     name: dog.name,
                     breed: dog.breed,
                     age: parseInt(dog.age),
-                    ownerId: parseInt(sessionStorage.getItem("charlies_user")),
-                    knownCommandsId: parseInt(dog.knownCommandsId),
-                    knownTricksId: parseInt(dog.knownTricksId),
-                    knownHabitsId: parseInt(dog.knownHabitsId)
+                    ownerId: parseInt(sessionStorage.getItem("charlies_user"))
                 }
                 addDog(newDog)
-                    .then(() => history.push("/"))
+                    .then(() => history.push("/home"))
             }
         }
     }
 
     useEffect(() => {
-        if(dogId){
+        if (dogId) {
             getDogById(dogId)
-            .then(dog => {
-                setDog(dog)
-                setIsLoading(false)
-            })
+                .then(dog => {
+                    setDog(dog)
+                    setIsLoading(false)
+                })
         } else {
             setIsLoading(false)
         }
@@ -96,7 +84,7 @@ export const DogForm = () => {
             <button className="btn btn-primary" disabled={isLoading} onClick={handleClickSaveDog}>
                 {dogId ? <>Update Dog</> : <>Save Dog</>}
             </button>
-            <button className="btn btn-primary" onClick={ () => dogId ? history.push(`/dogs/detail/${dogId}`) : history.push('/home')}>
+            <button className="btn btn-primary" onClick={() => dogId ? history.push(`/dogs/detail/${dogId}`) : history.push('/home')}>
                 Cancel
             </button>
         </form>

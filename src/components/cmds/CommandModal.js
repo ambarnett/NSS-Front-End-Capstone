@@ -9,7 +9,7 @@ import { useHistory, useParams } from 'react-router-dom';
 
 export const AddCommandModal = () => {
     const { commands, getCommands, removeCommand } = useContext(CommandsContext)
-    const { knownCommands, addKnownCommands, removeKnownCommand } = useContext(KnownCommandsContext)
+    const { knownCommands, addKnownCommands, removeKnownCommand, getKnownCommands } = useContext(KnownCommandsContext)
     const { dogs, getDogById } = useContext(DogContext)
     const [dog, setDog] = useState({})
     const [checkedCommandId, setCheckedCommandId] = useState({})
@@ -32,17 +32,20 @@ export const AddCommandModal = () => {
                 dogId: parseInt(dogId),
                 commandId: checkedCommandId
             })
-            .then(refreshPage)
+            // .then(refreshPage)
+            .then(getKnownCommands)
             console.log(dogId)
         }
     }
 
     const handleRemoveKnownCommand = () => {
         removeKnownCommand(checkedKnownCommandId)
+        .then(getKnownCommands)
     }
 
     const handleRemoveCommand = () => {
         removeCommand(checkedCommandId)
+        .then(getCommands)
     }
 
     const refreshPage = () => {
@@ -70,10 +73,9 @@ export const AddCommandModal = () => {
                             return <div>
                                 <input type="radio" name="radio" key={command.id} command={command} value={command.id} onChange={() => setCheckedCommandId(command.id)} />
                                 <label htmlFor="radio">{command.name}</label>
-                                <button className="close" onClick={() => {
-                                    removeCommand(command.id);
-                                    refreshPage()
-                                }}>
+                                <button className="close" onClick={
+                                    handleRemoveCommand
+                                }>
                                     &times;
                                 </button>
                             </div>
@@ -97,7 +99,7 @@ export const AddCommandModal = () => {
                             })}
                             <button className="removeCommand" onClick={() => {
                                 handleRemoveKnownCommand();
-                                refreshPage()
+                                // refreshPage()
                             }}>
                                 Remove Command(s)
                             </button>

@@ -90,6 +90,7 @@
   font-size: 18px;
   text-align: center;
   padding: 5px;
+  color: #000;
 }
 .modal > .content {
   width: 100%;
@@ -113,4 +114,12 @@
   background: #ffffff;
   border-radius: 18px;
   border: 1px solid #cfcece;
+}
+.popup-content{
+    background-color: #09814a;
+    border-radius: 5px;
+}
+label{
+    font-weight: 700;
+    color: black;
 }

@@ -89,7 +89,7 @@ export const AddCommandModal = () => {
                         }}>
                             Add Selected Command(s)
                         </button>
-                        <Popup trigger={<button className="modal-button-close">Remove Known Command</button>} nested position="top center">
+                        <Popup trigger={<button className="modal-button-inner">Remove Known Command</button>} nested position="top center">
                             {knownCommands.map(kc => {
                                 return (
                                     (parseInt(dogId) === kc.dogId) ?
@@ -113,7 +113,7 @@ export const AddCommandModal = () => {
                             {CommandModalForm}
                         </Popup>
                         <button
-                            className="modal-button-close"
+                            className="modal-button-inner"
                             onClick={() => {
                                 console.log('modal closed ');
                                 close();

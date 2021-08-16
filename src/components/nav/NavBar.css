@@ -33,3 +33,11 @@
     padding: .5rem 1rem;
     color: inherit;
 }
+.nav-img{
+    width: 108px;
+    margin: -10px -10px -10px -27px;
+}
+.nav-headline{
+    display: flex;
+    align-items: center;
+}

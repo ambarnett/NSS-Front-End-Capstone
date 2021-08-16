@@ -93,17 +93,22 @@
   box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356);
 }
 .dog__detail__name {
+  font-size: 50px;
 }
 .dog__detail img {
   width: 300px;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 .dog__detail__info {
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+  margin-inline: auto;
 }
 .dog__detail__breed {
+  font-size: xx-large;
 }
 .dog__detail__age {
+  font-size: xx-large;
 }
 .dog__detail__second__cards {
   display: flex;
@@ -123,7 +128,13 @@
   background-color: #e5c687;
   box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356);
 }
-.commands__title{
+.commands__title {
+  text-decoration: underline;
+}
+.tricks__title {
+  text-decoration: underline;
+}
+.habits__title {
   text-decoration: underline;
 }
 .dog__detail__tricks {
@@ -169,7 +180,7 @@
   font-weight: 700;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.294);
 }
-.add__pic__btn:hover{
+.add__pic__btn:hover {
   background-color: #2d4739;
   box-shadow: none;
 }
@@ -207,11 +218,11 @@
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.294);
 }
-.edit__dog__button:hover{
+.edit__dog__button:hover {
   background-color: #2d4739;
   box-shadow: none;
 }
-.dog__detail__third__card  {
+.dog__detail__third__card {
   padding: 40px 40px;
   justify-content: space-around;
   font-weight: 400;
@@ -222,7 +233,7 @@
   /* background-color: #e5c687;
   box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356); */
 }
-.dog__notes__form__and__button{
+.dog__notes__form__and__button {
   width: 55rem;
   border-radius: 10px;
   background-color: #e5c687;
@@ -233,12 +244,12 @@
   border: solid black;
   background-color: white;
 }
-.main__buttons{
+.main__buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
-.note-area{
+.note-area {
   outline: none;
   width: 350px;
   height: 175px;
@@ -246,7 +257,7 @@
   border: solid;
   margin: 10px;
 }
-.note__btn{
+.note__btn {
   border-radius: 5px;
   bottom: -20px;
   right: -20px;
@@ -291,13 +302,13 @@
 .dog__detail__notes__notepad li:hover {
   background-color: #f0f0f0;
   -webkit-transition: all 0.2s;
-  -moz-transition:    all 0.2s;
-  -ms-transition:     all 0.2s;
-  -o-transition:      all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
 }
-.remove-note-btn{
+.remove-note-btn {
   margin-right: 10px;
 }
-.note-list{
+.note-list {
   /* display: grid; */
 }

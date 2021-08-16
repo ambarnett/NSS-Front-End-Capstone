@@ -24,6 +24,7 @@ export const DogForm = () => {
             name: dog.name,
             breed: dog.breed,
             age: dog.age,
+            ownerId: dog.ownerId
         })
             .then(() => history.push(`/dogs/detail/${dog.id}`))
     }

@@ -6,11 +6,7 @@ import "./Dog.css"
 export const DogForm = () => {
     const { addDog, getDogById, editDog, addDogImage } = useContext(DogContext)
 
-    const [dog, setDog] = useState({
-        name: "",
-        breed: "",
-        age: null,
-    })
+    const [dog, setDog] = useState({})
 
     const [isLoading, setIsLoading] = useState(true)
     const { dogId } = useParams()
@@ -22,28 +18,36 @@ export const DogForm = () => {
         setDog(newDog)
     }
 
+    const saveEditDog = () => {
+        editDog({
+            id: dog.id,
+            name: dog.name,
+            breed: dog.breed,
+            age: dog.age,
+        })
+            .then(() => history.push(`/dogs/detail/${dog.id}`))
+    }
+
+    const saveNewDog = () => {
+        const newDog = {
+            name: dog.name,
+            breed: dog.breed,
+            age: parseInt(dog.age),
+            ownerId: parseInt(sessionStorage.getItem("charlies_user"))
+        }
+        addDog(newDog)
+            .then(() => history.push("/home"))
+    }
+
     const handleClickSaveDog = (evt) => {
         evt.preventDefault()
         if (dog.name === "") {
-            window.alert("FILL OUT THE FORM COMPLETELY!!! ALSO MAKE A BETTER MESSAGE")
+            window.alert("Please fill out the form completely")
         } else {
             if (dogId) {
-                editDog({
-                    id: dog.id,
-                    name: dog.name,
-                    breed: dog.breed,
-                    age: dog.age,
-                })
-                    .then(() => history.push(`/dogs/detail/${dog.id}`))
+                saveEditDog()
             } else {
-                const newDog = {
-                    name: dog.name,
-                    breed: dog.breed,
-                    age: parseInt(dog.age),
-                    ownerId: parseInt(sessionStorage.getItem("charlies_user"))
-                }
-                addDog(newDog)
-                    .then(() => history.push("/home"))
+                saveNewDog()
             }
         }
     }

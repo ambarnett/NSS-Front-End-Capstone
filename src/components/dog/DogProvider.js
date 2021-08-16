@@ -37,7 +37,7 @@ export const DogProvider = (props) => {
     }
 
     const editDog = (dog) => {
-        return fetch(`http://localhost:8088/dogs/${dogs.id}`, {
+        return fetch(`http://localhost:8088/dogs/${dog.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type" : "application/json"

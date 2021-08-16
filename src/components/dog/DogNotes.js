@@ -15,7 +15,7 @@ export const DogNotes = () => {
             .then((res) => {
                 setDog(res)
             })
-    })
+    }, [])
 
     const handleInputChange = (e) => {
         const newNote = { ...note }

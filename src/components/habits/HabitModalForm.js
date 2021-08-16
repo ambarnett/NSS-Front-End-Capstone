@@ -49,17 +49,18 @@ export const HabitModalForm = () => {
     }, [])
 
     return (
-        <form className="habitForm">
-            <h2 className="habitForm__title">{habitId ? <>Edit habit</> : <>New Habit</>}</h2>
+        <form className="modalForm">
+            <h2 className="modalForm__title">{habitId ? <>Edit habit</> : <>New Habit</>}</h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="name">Habit name: </label>
-                    <input type="text" id="name" required autoFocus className="form-control" placeholder="Habit name" value={habit.name} onChange={handleHabitChange} />
+                    <input type="text" id="name" required className="modal-form-control" placeholder="Habit name" value={habit.name} onChange={handleHabitChange} />
                 </div>
             </fieldset>
-            <button className="btn btn-primary" disabled={isLoading} onClick={(evt) => { evt.preventDefault(); handleClickSaveHabit() }}>
-                {habitId ? <>Save Habit</> : <>Add Habit</>}
-            </button>
+            <div className="modal-form-button-pos">
+                <button className="modal-form-button" disabled={isLoading} onClick={(evt) => { evt.preventDefault(); handleClickSaveHabit() }}>
+                    {habitId ? <>Save Habit</> : <>Add Habit</>}
+                </button>
+            </div>
         </form>
     )
 }

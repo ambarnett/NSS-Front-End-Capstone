@@ -33,7 +33,6 @@ export const AddHabitModal = () => {
                 dogId: parseInt(dogId),
                 habitId: checkedHabitId
             })
-                // .then(refreshPage)
                 .then(getKnownHabits)
             console.log(dogId)
         }
@@ -49,10 +48,6 @@ export const AddHabitModal = () => {
         .then(getHabits)
     }
 
-    // const refreshPage = () => {
-    //     window.location.reload()
-    // }
-
     useEffect(() => {
         getHabits()
     }, [])
@@ -62,10 +57,11 @@ export const AddHabitModal = () => {
             trigger={<button className="modal-button"> Add/Remove Habit </button>}
             modal
             nested
+            lockScroll
         >
             {close => (
                 <div className="modal">
-                    <button className="modal-button-inner" onClick={close}>
+                    <button className="modal-button-close" onClick={close}>
                         &times;
                     </button>
                     <div className="header"> Select habit from list or click below to create a new habit </div>
@@ -88,7 +84,7 @@ export const AddHabitModal = () => {
                         }}>
                             Add Selected Habit(s)
                         </button>
-                        <Popup trigger={<button className="modal-button-close">Remove Known Habit</button>} nested position="top center">
+                        <Popup trigger={<button className="modal-button-inner">Remove Known Habit</button>} nested position="top center">
                             {knownHabits.map(kh => {
                                 return (
                                     (parseInt(dogId) === kh.dogId) ?
@@ -100,7 +96,6 @@ export const AddHabitModal = () => {
                             })}
                             <button className="modal-button-close" onClick={() => {
                                 handleRemoveKnownHabit();
-                                // refreshPage()
                             }}>
                                 Remove Habit(s)
                             </button>
@@ -109,11 +104,12 @@ export const AddHabitModal = () => {
                             trigger={<button className="modal-button-inner"> Create New Habit </button>}
                             position="top center"
                             nested
+                            lockScroll
                         >
                             {HabitModalForm}
                         </Popup>
                         <button
-                            className="modal-button-close"
+                            className="modal-button-inner"
                             onClick={() => {
                                 console.log('modal closed ');
                                 close();

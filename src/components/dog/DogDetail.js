@@ -12,8 +12,7 @@ import { AddTrickModal } from '../tricks/TrickModal'
 import { DogNotes } from './DogNotes'
 
 export const DogDetail = () => {
-    const { getDogById, deleteDog, dogImages, getDogImage, dogNotes, getDogNotes } = useContext(DogContext)
-    const { getHabitById, habits } = useContext(HabitContext)
+    const { getDogById, deleteDog, dogImages, getDogImage, dogNotes, getDogNotes, removeNote } = useContext(DogContext)
     const { getKnownHabits, knownHabits } = useContext(KnownHabitsContext)
     const { getKnownCommands, knownCommands } = useContext(KnownCommandsContext)
     const { getKnownTricks, knownTricks } = useContext(KnownTricksContext)
@@ -92,7 +91,17 @@ export const DogDetail = () => {
                 <div className="dog__detail__notes__display">
                     <div className="lines"></div>
                     <ul className="dog__detail__notes__notepad">{
-                        dogNotes.filter(dogNote => dogNote.dogId === parseInt(dogId)).map(filteredNote => (<li>{filteredNote.content}</li>))
+                        dogNotes.filter(dogNote => dogNote.dogId === parseInt(dogId)).map(filteredNote => (
+                            <div className="note-list">
+                                <li>
+                                    <button className="remove-note-btn" onClick={
+                                        () => removeNote(filteredNote.id)
+                                    }>&times;
+                                    </button>
+                                    {filteredNote.content}
+                                </li>
+                            </div>
+                        ))
                     }</ul>
                 </div>
             </div>

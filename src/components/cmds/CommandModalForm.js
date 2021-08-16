@@ -48,17 +48,18 @@ export const CommandModalForm = () => {
     }, [])
 
     return (
-        <form className="commandForm">
-            <h2 className="commandForm__title">{commandId ? <>Edit Command</> : <>New Command</>}</h2>
+        <form className="modalForm">
+            <h2 className="modalForm__title">{commandId ? <>Edit Command</> : <>New Command</>}</h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="name">Command name: </label>
-                    <input type="text" id="name" required autoFocus className="form-control" placeholder="Command name" value={command.name} onChange={handleCommandChange} />
+                    <input type="text" id="name" required className="modal-form-control" placeholder="Command name" value={command.name} onChange={handleCommandChange} />
                 </div>
             </fieldset>
-            <button className="btn btn-primary" disabled={isLoading} onClick={(evt) => { evt.preventDefault(); handleClickSaveCommand() }}>
-                {commandId ? <>Save Command</> : <>Add Command</>}
-            </button>
+            <div className="modal-form-button-pos">
+                <button className="modal-form-button" disabled={isLoading} onClick={(evt) => { evt.preventDefault(); handleClickSaveCommand() }}>
+                    {commandId ? <>Save Command</> : <>Add Command</>}
+                </button>
+            </div>
         </form>
     )
 }

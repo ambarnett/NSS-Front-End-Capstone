@@ -108,7 +108,7 @@
 .dog__detail__second__cards {
   display: flex;
   justify-content: space-around;
-  margin: 185px;
+  margin: 100px;
 }
 .dog__detail__commands {
   list-style: none;
@@ -294,4 +294,10 @@
   -moz-transition:    all 0.2s;
   -ms-transition:     all 0.2s;
   -o-transition:      all 0.2s;
+}
+.remove-note-btn{
+  margin-right: 10px;
+}
+.note-list{
+  /* display: grid; */
 }

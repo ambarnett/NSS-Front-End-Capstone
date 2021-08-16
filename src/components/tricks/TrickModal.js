@@ -57,14 +57,15 @@ export const AddTrickModal = () => {
             trigger={<button className="modal-button"> Add/Remove Trick </button>}
             modal
             nested
+            lockScroll
         >
             {close => (
                 <div className="modal">
-                    <button className="modal-button-inner" onClick={close}>
+                    <button className="modal-button-close" onClick={close}>
                         &times;
                     </button>
-                    <div className="modal-header"> Select Trick from list or click below to create a new Trick </div>
-                    <div className="modal-content" value={tricks.id}>
+                    <div className="header"> Select Trick from list or click below to create a new Trick </div>
+                    <div className="content" value={tricks.id}>
                         {tricks.map(trick => {
                             return <div>
                                 <input type="radio" name="radio" key={trick.id} trick={trick} value={trick.id} onChange={() => setCheckedTrickId(trick.id)} />
@@ -83,7 +84,7 @@ export const AddTrickModal = () => {
                         }}>
                             Add Selected Trick(s)
                         </button>
-                        <Popup trigger={<button className="modal-button-close">Remove Known Trick</button>} nested position="top center">
+                        <Popup trigger={<button className="modal-button-inner">Remove Known Trick</button>} nested position="top center">
                             {knownTricks.map(kt => {
                                 return (
                                     (parseInt(dogId) === kt.dogId) ?
@@ -103,11 +104,12 @@ export const AddTrickModal = () => {
                             trigger={<button className="modal-button-inner"> Create New Trick </button>}
                             position="top center"
                             nested
+                            lockScroll
                         >
                             {TrickModalForm}
                         </Popup>
                         <button
-                            className="modal-button-close"
+                            className="modal-button-inner"
                             onClick={() => {
                                 console.log('modal closed ');
                                 close();

@@ -48,17 +48,18 @@ export const TrickModalForm = () => {
     }, [])
 
     return (
-        <form className="trickForm">
-            <h2 className="trickForm__title">{trickId ? <>Edit Trick</> : <>New Trick</>}</h2>
+        <form className="modalForm">
+            <h2 className="modalForm__title">{trickId ? <>Edit Trick</> : <>New Trick</>}</h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="name">Trick name: </label>
-                    <input type="text" id="name" required autoFocus className="form-control" placeholder="Trick name" value={trick.name} onChange={handleTrickChange} />
+                    <input type="text" id="name" required className="modal-form-control" placeholder="Trick name" value={trick.name} onChange={handleTrickChange} />
                 </div>
             </fieldset>
-            <button className="btn btn-primary" disabled={isLoading} onClick={(evt) => { evt.preventDefault(); handleClickSaveTrick() }}>
-                {trickId ? <>Save Trick</> : <>Add Trick</>}
-            </button>
+            <div className="modal-form-button-pos">
+                <button className="modal-form-button" disabled={isLoading} onClick={(evt) => { evt.preventDefault(); handleClickSaveTrick() }}>
+                    {trickId ? <>Save Trick</> : <>Add Trick</>}
+                </button>
+            </div>
         </form>
     )
 }

@@ -26,27 +26,26 @@ export const AddCommandModal = () => {
     }, [])
 
     const handleAddKnownCommand = () => {
-            if(isNaN(checkedCommandId)) {
+        if (isNaN(checkedCommandId)) {
             window.alert("please make a selection")
         } else {
             addKnownCommands({
                 dogId: parseInt(dogId),
                 commandId: checkedCommandId
             })
-            // .then(refreshPage)
-            .then(getKnownCommands)
+                .then(getKnownCommands)
             console.log(dogId)
         }
     }
 
     const handleRemoveKnownCommand = () => {
         removeKnownCommand(checkedKnownCommandId)
-        .then(getKnownCommands)
+            .then(getKnownCommands)
     }
 
     const handleRemoveCommand = () => {
         removeCommand(checkedCommandId)
-        .then(getCommands)
+            .then(getCommands)
     }
 
     const refreshPage = () => {
@@ -63,6 +62,7 @@ export const AddCommandModal = () => {
             modal
             nested
             className="modal-main"
+            lockScroll
         >
             {close => (
                 <div className="modal">
@@ -89,7 +89,7 @@ export const AddCommandModal = () => {
                         }}>
                             Add Selected Command(s)
                         </button>
-                        <Popup trigger={<button className="modal-button-close">Remove Known Command</button>} nested position="top center">
+                        <Popup trigger={<button className="modal-button-inner">Remove Known Command</button>} nested position="top center">
                             {knownCommands.map(kc => {
                                 return (
                                     (parseInt(dogId) === kc.dogId) ?
@@ -109,11 +109,12 @@ export const AddCommandModal = () => {
                             trigger={<button className="modal-button-inner"> Create New Command </button>}
                             position="top center"
                             nested
+                            lockScroll
                         >
                             {CommandModalForm}
                         </Popup>
                         <button
-                            className="modal-button-close"
+                            className="modal-button-inner"
                             onClick={() => {
                                 console.log('modal closed ');
                                 close();

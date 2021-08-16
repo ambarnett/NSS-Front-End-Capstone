@@ -69,21 +69,21 @@ export const DogDetail = () => {
                 </div>
             </div>
             <div className="dog__detail__second__cards">
-                <div className="dog__detail__commands">Known Commands: {
-                    knownCommands.filter(knownCommand => knownCommand.dogId === parseInt(dogId)).map(filteredCommand => (<div>{filteredCommand.command?.name}</div>))
+                <ul className="dog__detail__commands"><h2 className="commands__title">Known Commands:</h2> {
+                    knownCommands.filter(knownCommand => knownCommand.dogId === parseInt(dogId)).map(filteredCommand => (<li>{filteredCommand.command?.name}</li>))
                 }
                     <AddCommandModal />
-                </div>
-                <div className="dog__detail__tricks">Known Tricks: {
-                    knownTricks.filter(knownTrick => knownTrick.dogId === parseInt(dogId)).map(filteredTrick => (<div>{filteredTrick.trick?.name}</div>))
+                </ul>
+                <ul className="dog__detail__tricks"><h2 className="tricks__title">Known Tricks:</h2> {
+                    knownTricks.filter(knownTrick => knownTrick.dogId === parseInt(dogId)).map(filteredTrick => (<li>{filteredTrick.trick?.name}</li>))
                 }
                     <AddTrickModal />
-                </div>
-                <div className="dog__detail__habits">Known Habits: {
-                    knownHabits.filter(knownHabit => knownHabit.dogId === parseInt(dogId)).map(filteredHabit => (<div>{filteredHabit.habit?.name}</div>))
+                </ul>
+                <ul className="dog__detail__habits"><h2 className="habits__title">Known Habits:</h2> {
+                    knownHabits.filter(knownHabit => knownHabit.dogId === parseInt(dogId)).map(filteredHabit => (<li>{filteredHabit.habit?.name}</li>))
                 }
                     <AddHabitModal />
-                </div>
+                </ul>
             </div>
             <div className="dog__detail__third__card">
                 <div className="dog__notes__form__and__button">

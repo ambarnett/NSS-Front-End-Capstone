@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { HabitContext } from './HabitProvider'
 import { useHistory, useParams } from 'react-router-dom'
+import '../../components/modal.css'
 
 export const HabitModalForm = () => {
     const { addHabit, getHabitById, updateHabit } = useContext(HabitContext)

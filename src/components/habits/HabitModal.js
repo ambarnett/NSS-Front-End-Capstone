@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import Popup from 'reactjs-popup'
 import './Habits.css'
+import '../../components/modal.css'
 import { HabitContext } from './HabitProvider';
 import { HabitModalForm } from './HabitModalForm';
 import { KnownHabitsContext } from '../knownHabits/KnownHabitsProvider';
@@ -58,13 +59,13 @@ export const AddHabitModal = () => {
 
     return (
         <Popup
-            trigger={<button className="button"> Add/Remove Habit </button>}
+            trigger={<button className="modal-button"> Add/Remove Habit </button>}
             modal
             nested
         >
             {close => (
                 <div className="modal">
-                    <button className="close" onClick={close}>
+                    <button className="modal-button-inner" onClick={close}>
                         &times;
                     </button>
                     <div className="header"> Select habit from list or click below to create a new habit </div>
@@ -73,7 +74,7 @@ export const AddHabitModal = () => {
                             return <div>
                                 <input type="radio" required name="radio" key={habit.id} habit={habit} value={habit.id} onChange={() => setCheckedHabitId(habit.id)} />
                                 <label htmlFor="radio">{habit.name}</label>
-                                <button className="close" onClick={
+                                <button className="modal-button-close" onClick={
                                     handleRemoveHabit
                                 }>
                                     &times;
@@ -82,12 +83,12 @@ export const AddHabitModal = () => {
                         })}
                     </div>
                     <div className="actions">
-                        <button className="addHabit" onClick={() => {
+                        <button className="modal-button-inner" onClick={() => {
                             handleAddKnownHabit();
                         }}>
                             Add Selected Habit(s)
                         </button>
-                        <Popup trigger={<button className="button">Remove Known Habit</button>} nested position="top center">
+                        <Popup trigger={<button className="modal-button-close">Remove Known Habit</button>} nested position="top center">
                             {knownHabits.map(kh => {
                                 return (
                                     (parseInt(dogId) === kh.dogId) ?
@@ -97,7 +98,7 @@ export const AddHabitModal = () => {
                                         </div>
                                         : <></>)
                             })}
-                            <button className="removeHabit" onClick={() => {
+                            <button className="modal-button-close" onClick={() => {
                                 handleRemoveKnownHabit();
                                 // refreshPage()
                             }}>
@@ -105,14 +106,14 @@ export const AddHabitModal = () => {
                             </button>
                         </Popup>
                         <Popup
-                            trigger={<button className="button"> Create New Habit </button>}
+                            trigger={<button className="modal-button-inner"> Create New Habit </button>}
                             position="top center"
                             nested
                         >
                             {HabitModalForm}
                         </Popup>
                         <button
-                            className="button"
+                            className="modal-button-close"
                             onClick={() => {
                                 console.log('modal closed ');
                                 close();

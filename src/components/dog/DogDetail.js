@@ -53,14 +53,14 @@ export const DogDetail = () => {
     return (
         <section className="dog__detail">
             <div className="dog__detail__main__card">
-                <image className="dog__detail__image">{
+                <div className="dog__detail__image">{
                     dogImages.filter(dogImage => dogImage.dogId === parseInt(dogId)).map(filteredImage => (<img src={filteredImage.imgURL} />))
                 }
                     <div className="main__buttons">
                         <button className="add__pic__btn" onClick={() => { history.push(`/dogs/image/${dog.id}`) }}>Add picture</button>
                         <button className="edit__dog__button" onClick={() => { history.push(`/dogs/edit/${dog.id}`) }}>Edit Dog</button>
                     </div>
-                </image>
+                </div>
                 <div className="dog__detail__info">
                     <h3 className="dog__detail__name">{dog.name}</h3>
                     <div className="dog__detail__breed">Breed: {dog.breed}</div>

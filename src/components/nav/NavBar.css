@@ -12,6 +12,10 @@
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
     margin: -1em;
 }
+.navbar-items{
+    display: flex;
+    margin: 0 100px 0 0;
+}
 
 .nav {
     text-decoration: underline;
@@ -32,4 +36,13 @@
     display: block;
     padding: .5rem 1rem;
     color: inherit;
+}
+.nav-img{
+    width: 108px;
+    margin: -10px -10px -10px -27px;
+}
+.nav-headline{
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 100px;
 }

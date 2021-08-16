@@ -61,9 +61,6 @@ export const AddTrickModal = () => {
         >
             {close => (
                 <div className="modal">
-                    <button className="modal-button-close" onClick={close}>
-                        &times;
-                    </button>
                     <div className="header"> Select Trick from list or click below to create a new Trick </div>
                     <div className="content" value={tricks.id}>
                         {tricks.map(trick => {

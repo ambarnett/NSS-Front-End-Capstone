@@ -61,9 +61,6 @@ export const AddHabitModal = () => {
         >
             {close => (
                 <div className="modal">
-                    <button className="modal-button-close" onClick={close}>
-                        &times;
-                    </button>
                     <div className="header"> Select habit from list or click below to create a new habit </div>
                     <div className="content" value={habits.id}>
                         {habits.map(habit => {

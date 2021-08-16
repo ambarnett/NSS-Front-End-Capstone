@@ -66,9 +66,6 @@ export const AddCommandModal = () => {
         >
             {close => (
                 <div className="modal">
-                    <button className="modal-button-close" onClick={close}>
-                        &times;
-                    </button>
                     <div className="header"> Select command from list or click below to create a new command </div>
                     <div className="content" value={commands.id}>
                         {commands.map(command => {

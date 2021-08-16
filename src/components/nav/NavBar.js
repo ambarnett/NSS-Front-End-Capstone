@@ -10,7 +10,7 @@ export const NavBar = () => {
                 <img className="nav-img" src={dogOutLine} alt="dog outline" />
                 <h2>Charlie's Checklist</h2>
             </div>
-            <div className="navbar">
+            <div className="navbar-items">
                 <ul className="nav">
                     <li className="nav-item">
                         <Link className="nav-link" to='/home'>

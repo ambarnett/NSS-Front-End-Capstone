@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { CommandsContext } from './CommandProvider'
 import { useHistory, useParams } from 'react-router-dom'
+import '../../components/modal.css'
 
 export const CommandModalForm = () => {
     const { addCommand, getCommandById, updateCommand } = useContext(CommandsContext)

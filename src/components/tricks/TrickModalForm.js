@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { TrickContext } from './TrickProvider'
 import { useHistory, useParams } from 'react-router-dom'
+import '../../components/modal.css'
 
 export const TrickModalForm = () => {
     const { addTrick, getTrickById, updateTrick } = useContext(TrickContext)

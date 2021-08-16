@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import Popup from 'reactjs-popup'
 import './Commands.css'
+import '../../components/modal.css'
 import { CommandsContext } from './CommandProvider';
 import { CommandModalForm } from './CommandModalForm';
 import { KnownCommandsContext } from '../knownCmds/KnownCommandsProvider';
@@ -58,13 +59,14 @@ export const AddCommandModal = () => {
 
     return (
         <Popup
-            trigger={<button className="button"> Add/Remove Command </button>}
+            trigger={<button className="modal-button"> Add/Remove Command </button>}
             modal
             nested
+            className="modal-main"
         >
             {close => (
                 <div className="modal">
-                    <button className="close" onClick={close}>
+                    <button className="modal-button-close" onClick={close}>
                         &times;
                     </button>
                     <div className="header"> Select command from list or click below to create a new command </div>
@@ -73,7 +75,7 @@ export const AddCommandModal = () => {
                             return <div>
                                 <input type="radio" name="radio" key={command.id} command={command} value={command.id} onChange={() => setCheckedCommandId(command.id)} />
                                 <label htmlFor="radio">{command.name}</label>
-                                <button className="close" onClick={
+                                <button className="modal-button-close" onClick={
                                     handleRemoveCommand
                                 }>
                                     &times;
@@ -82,12 +84,12 @@ export const AddCommandModal = () => {
                         })}
                     </div>
                     <div className="actions">
-                        <button className="addCommand" onClick={() => {
+                        <button className="modal-button-inner" onClick={() => {
                             handleAddKnownCommand();
                         }}>
                             Add Selected Command(s)
                         </button>
-                        <Popup trigger={<button className="button">Remove Known Command</button>} nested position="top center">
+                        <Popup trigger={<button className="modal-button-close">Remove Known Command</button>} nested position="top center">
                             {knownCommands.map(kc => {
                                 return (
                                     (parseInt(dogId) === kc.dogId) ?
@@ -97,22 +99,21 @@ export const AddCommandModal = () => {
                                         </div>
                                         : <></>)
                             })}
-                            <button className="removeCommand" onClick={() => {
+                            <button className="modal-button-close" onClick={() => {
                                 handleRemoveKnownCommand();
-                                // refreshPage()
                             }}>
                                 Remove Command(s)
                             </button>
                         </Popup>
                         <Popup
-                            trigger={<button className="button"> Create New Command </button>}
+                            trigger={<button className="modal-button-inner"> Create New Command </button>}
                             position="top center"
                             nested
                         >
                             {CommandModalForm}
                         </Popup>
                         <button
-                            className="button"
+                            className="modal-button-close"
                             onClick={() => {
                                 console.log('modal closed ');
                                 close();

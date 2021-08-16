@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import Popup from 'reactjs-popup'
 import './Tricks.css'
+import '../../components/modal.css'
 import { TrickContext } from './TrickProvider';
 import { TrickModalForm } from './TrickModalForm';
 import { KnownTricksContext } from '../knownTricks/KnownTricksProvider';
@@ -53,22 +54,22 @@ export const AddTrickModal = () => {
 
     return (
         <Popup
-            trigger={<button className="button"> Add/Remove Trick </button>}
+            trigger={<button className="modal-button"> Add/Remove Trick </button>}
             modal
             nested
         >
             {close => (
                 <div className="modal">
-                    <button className="close" onClick={close}>
+                    <button className="modal-button-inner" onClick={close}>
                         &times;
                     </button>
-                    <div className="header"> Select Trick from list or click below to create a new Trick </div>
-                    <div className="content" value={tricks.id}>
+                    <div className="modal-header"> Select Trick from list or click below to create a new Trick </div>
+                    <div className="modal-content" value={tricks.id}>
                         {tricks.map(trick => {
                             return <div>
                                 <input type="radio" name="radio" key={trick.id} trick={trick} value={trick.id} onChange={() => setCheckedTrickId(trick.id)} />
                                 <label htmlFor="radio">{trick.name}</label>
-                                <button className="close" onClick={
+                                <button className="modal-button-close" onClick={
                                     handleRemoveTrick
                                 }>
                                     &times;
@@ -77,12 +78,12 @@ export const AddTrickModal = () => {
                         })}
                     </div>
                     <div className="actions">
-                        <button className="addTrick" onClick={() => {
+                        <button className="modal-button-inner" onClick={() => {
                             handleAddKnownTrick();
                         }}>
                             Add Selected Trick(s)
                         </button>
-                        <Popup trigger={<button className="button">Remove Known Trick</button>} nested position="top center">
+                        <Popup trigger={<button className="modal-button-close">Remove Known Trick</button>} nested position="top center">
                             {knownTricks.map(kt => {
                                 return (
                                     (parseInt(dogId) === kt.dogId) ?
@@ -92,21 +93,21 @@ export const AddTrickModal = () => {
                                         </div>
                                         : <></>)
                             })}
-                            <button className="removeTrick" onClick={() => {
+                            <button className="modal-button-close" onClick={() => {
                                 handleRemoveKnownTrick();
                             }}>
                                 Remove Trick(s)
                             </button>
                         </Popup>
                         <Popup
-                            trigger={<button className="button"> Create New Trick </button>}
+                            trigger={<button className="modal-button-inner"> Create New Trick </button>}
                             position="top center"
                             nested
                         >
                             {TrickModalForm}
                         </Popup>
                         <button
-                            className="button"
+                            className="modal-button-close"
                             onClick={() => {
                                 console.log('modal closed ');
                                 close();

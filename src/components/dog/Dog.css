@@ -230,11 +230,9 @@
   border-radius: 15px;
   margin: 20px;
   flex-direction: row;
-  /* background-color: #e5c687;
-  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356); */
 }
 .dog__notes__form__and__button {
-  width: 55rem;
+  width: 40rem;
   border-radius: 10px;
   background-color: #e5c687;
   box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356);
@@ -251,7 +249,7 @@
 }
 .note-area {
   outline: none;
-  width: 350px;
+  width: -webkit-fill-available;
   height: 175px;
   border-radius: 5px;
   border: solid;

@@ -18,8 +18,8 @@ export const DogList = () => {
     return (
         <>
             <div className="title_text">
-                <h2>Dogs</h2>
-                <button onClick={() => { history.push("/dogs/create") }}>
+                <h2 className="dog-title">Dogs</h2>
+                <button className="edit__dog__button" onClick={() => { history.push("/dogs/create") }}>
                     Add Dog
                 </button>
             </div>

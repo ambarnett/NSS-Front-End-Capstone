@@ -17,12 +17,13 @@ export const DogNotes = () => {
             })
     }, [])
 
+    
     const handleInputChange = (e) => {
         const newNote = { ...note }
         newNote[e.target.id] = e.target.value
         setNote(newNote)
     }
-
+    
     const handleClickAddNote = (e) => {
         e.preventDefault()
         if (note.content === "") {
@@ -33,7 +34,7 @@ export const DogNotes = () => {
                 dogId: parseInt(dogId)
             }
             addDogNotes(newNote)
-                .then(history.push(`/dogs/detail/${dogId}`))
+            .then(history.push(`/dogs/detail/${dogId}`))
         }
     }
 

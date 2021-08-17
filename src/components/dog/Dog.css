@@ -4,7 +4,9 @@
   flex-direction: column;
   justify-content: space-between;
 }
-
+.dog-title{
+  font-size: xx-large;
+}
 .dog {
   flex-basis: 28%;
   margin: 1em;
@@ -36,8 +38,6 @@
   position: absolute;
   width: 300px;
   left: -20px;
-  /* height: 300px; */
-  /* border-radius: $border-radius 0 0 $border-radius; */
 }
 .btn-dog {
   position: absolute;
@@ -53,6 +53,7 @@
   font-size: 1rem;
   text-transform: uppercase;
   font-style: inherit;
+  font-weight: 700;
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.294);
 }

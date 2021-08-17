@@ -12,7 +12,7 @@ import { AddTrickModal } from '../tricks/TrickModal'
 import { DogNotes } from './DogNotes'
 
 export const DogDetail = () => {
-    const { getDogById, deleteDog, dogImages, getDogImage, dogNotes, getDogNotes, removeNote } = useContext(DogContext)
+    const { getDogById, deleteDog, dogImages, getDogImage, dogNotes, getDogNotes, removeNote, removeImage } = useContext(DogContext)
     const { getKnownHabits, knownHabits } = useContext(KnownHabitsContext)
     const { getKnownCommands, knownCommands } = useContext(KnownCommandsContext)
     const { getKnownTricks, knownTricks } = useContext(KnownTricksContext)
@@ -54,7 +54,11 @@ export const DogDetail = () => {
         <section className="dog__detail">
             <div className="dog__detail__main__card">
                 <div className="dog__detail__image">{
-                    dogImages.filter(dogImage => dogImage.dogId === parseInt(dogId)).map(filteredImage => (<img src={filteredImage.imgURL} />))
+                    dogImages.filter(dogImage => dogImage.dogId === parseInt(dogId)).map(filteredImage => (<div className="image-and-remove-btn">
+                        <img src={filteredImage.imgURL} />
+                        <button className="remove-img-btn" onClick={() => removeImage(filteredImage.id)}>Remove picture</button>
+                    </div>
+                    ))
                 }
                     <div className="main__buttons">
                         <button className="add__pic__btn" onClick={() => { history.push(`/dogs/image/${dog.id}`) }}>Add picture</button>

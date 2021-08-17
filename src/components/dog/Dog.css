@@ -311,3 +311,22 @@
 .note-list {
   /* display: grid; */
 }
+.image-and-remove-btn{
+  display: flex;
+  flex-direction: column;
+}
+.remove-img-btn{
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  align-items: center;
+  background-color: #09814a;
+  padding: 5px 10px;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-style: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.294);
+}

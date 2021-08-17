@@ -64,6 +64,13 @@ export const DogProvider = (props) => {
         .then(getDogImage)
     }
 
+    const removeImage = (imgId) => {
+        return fetch(`http://localhost:8088/dogImages/${imgId}`, {
+            method: "DELETE"
+        })
+        .then(getDogImage)
+    }
+
     const getDogNotes = () => {
         return fetch("http://localhost:8088/dogNotes?_expand=dog")
         .then(res => res.json())
@@ -88,7 +95,7 @@ export const DogProvider = (props) => {
     }
     return (
         <DogContext.Provider value={{
-            dogs, getDogs, addDog, getDogById, deleteDog, editDog, getDogImage, addDogImage, dogImages, dogNotes, getDogNotes, addDogNotes, removeNote
+            dogs, getDogs, addDog, getDogById, deleteDog, editDog, getDogImage, addDogImage, dogImages, removeImage, dogNotes, getDogNotes, addDogNotes, removeNote
         }}>
             {props.children}
         </DogContext.Provider>

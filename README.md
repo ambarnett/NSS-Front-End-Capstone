@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# Charlie's Checklist
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+With Charlie’s Checklist it will give a dog owner an easy way to keep track of training they have accomplished with their dog,
+make notes for future reference and create a profile of each dog.
 
-## Available Scripts
+## About Charlie's Checklist
 
-In the project directory, you can run:
+A goal I had with this app was to make something that would have most of it's operations and functions perform on a minimal amount of pages.
+I was able to accomplish this with the help of ![Reactjs-popup](https://react-popup.elazizi.com/). I used Reactjs-popup to create pop-ups for the commands, tricks, and habits parts of the dogs profile page. 
 
-### `npm start`
+## Demo 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![CharliesChecklist](src\components\images\CharliesChecklist.gif)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Try it yourself
 
-### `npm test`
+1. Clone the app
+2. Copy and paste the blank database I have provided into a .json file
+3. Run the database with `json-server database.json -p 8088 -w`
+4. Create profiles for your dog (or cat, ferret, goldfish, pet moose), track, keep notes, and enjoy the app!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Database
+Just copy and paste everything below into a .json file
+```
+{
+    "users":[],
+    "dogs":[],
+    "dogImages":[],
+    "dogNotes":[],
+    "knownHabits":[],
+    "knownTricks":[],
+    "knownCommands":[],
+    "habits":[],
+    "tricks":[],
+    "commands":[]
+}
+```

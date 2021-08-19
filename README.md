@@ -10,7 +10,7 @@ I was able to accomplish this with the help of ![Reactjs-popup](https://react-po
 
 ## Demo 
 
-![CharliesChecklist](src\components\images\CharliesChecklist.gif)
+![CharliesChecklist](src/components/images/CharliesChecklist.gif)
 
 ## Try it yourself
 
